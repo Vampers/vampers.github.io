@@ -4332,6 +4332,7 @@
 	}
 	.page_title h2{
 		position:absolute;
+		font-family: 'Noto Sans', 'Microsoft Yahei', sans-serif;
 		font-size: 2rem;
 		font-weight: bold;
 		text-shadow:6px 5px 10px #000;
