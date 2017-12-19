@@ -357,3 +357,7 @@ h1, h2, h3, h4, h5, h6 {
 p {
   text-shadow: 0.02em 0.02em 0.02em #999999
 }
+
+h1.headerlink, h2.headerlink, h3.headerlink, h4.headerlink, h5.headerlink, h6.headerlink {
+  text-shadow: 0.02em 0.02em 0.02em #999999
+}
