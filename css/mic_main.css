@@ -4368,7 +4368,7 @@
 		border:none;
 	}
 	.post-content {
-		font-family: FZLT, 'Noto Sans SC', sans-serif;
+		font-family: FZLT, "Noto Sans SC", sans-serif;
 	}
 	.post-content li{
 		list-style-type:none;
@@ -4389,32 +4389,32 @@
 	.post-content h1{
 		text-transform:none;
 		font-size: 3rem;
-		font-family: FZLT, 'Noto Sans SC', sans-serif;
+		font-family: FZLT, "Noto Sans SC", sans-serif;
 	}
 	.post-content h2{
 		text-transform:none;
-		font-family: FZLT, 'Noto Sans SC', sans-serif;
+		font-family: FZLT, "Noto Sans SC", sans-serif;
 		font-size: 2.5rem;	
 	}
 	.post-content h3{
 		text-transform:none;
-		font-family: FZLT,'Noto Sans SC', sans-serif;
+		font-family: FZLT,"Noto Sans SC", sans-serif;
 		font-size: 2rem;
 		
 	}
 	.post-content h4{
 		text-transform:none;
-		font-family: FZLT,'Noto Sans SC', sans-serif;
+		font-family: FZLT,"Noto Sans SC", sans-serif;
 		font-size: 1.5rem;
 	}
 	.post-content h5{
 		text-transform:none;
-		font-family: FZLT,'Noto Sans SC', sans-serif;
+		font-family: FZLT,"Noto Sans SC", sans-serif;
 		font-size: 1.2rem;
 	}
 	.post-content h6{
 		text-transform:none;
-		font-family: FZLT,'Noto Sans SC', sans-serif;
+		font-family: FZLT,"Noto Sans SC", sans-serif;
 		font-size: 1rem;
 	}
 	.post-content code{
