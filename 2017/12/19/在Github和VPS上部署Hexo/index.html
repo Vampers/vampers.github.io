@@ -93,18 +93,80 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。本文主要介绍 Hexo 在 Github 和 VPS 上的搭建过程，操作系统环境为 Windows 10。  </p>
-<h2 id="2-Github-上的搭建过程"><a href="#2-Github-上的搭建过程" class="headerlink" title="2. Github 上的搭建过程"></a>2. Github 上的搭建过程</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1 创建仓库"></a>2.1 创建仓库</h3><p>在你的 Github 账号下新建一个名为 <code>你的用户名.github.io</code> 的仓库。例如，你的 Github 用户名为 Aida，则创建 <code>aida.github.io</code> ，将来你的网站访问地址就是 <a href="https://aida.github.io" target="_blank" rel="noopener">https://aida.github.io</a>。可见一个 Github 账号最多只能有一个这样的仓库。  </p>
+                <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Hexo 是一个快速、简洁且高效的博客框架，支持丰富的插件和主题。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。本文主要介绍 Hexo 在 Github 和 VPS 上的搭建过程，操作系统环境为 Windows 10。  </p>
+<h2 id="2-Github-上的搭建过程"><a href="#2-Github-上的搭建过程" class="headerlink" title="2. Github 上的搭建过程"></a>2. Github 上的搭建过程</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1 创建仓库"></a>2.1 创建仓库</h3><p>在你的 Github 账号下新建一个名为 <code>你的用户名.github.io</code> 的仓库。例如，你的 Github 用户名为 xxx，则创建 <code>xxx.github.io</code>，将来你的网站访问地址就是 <a href="https://aida.github.io。可见一个" target="_blank" rel="noopener">https://aida.github.io。可见一个</a> Github 账号最多只能有一个这样的仓库。  </p>
 <h3 id="2-2-环境搭建"><a href="#2-2-环境搭建" class="headerlink" title="2.2 环境搭建"></a>2.2 环境搭建</h3><p>在本地安装以下工具：  </p>
 <ul>
 <li><a href="https://nodejs.org/zh-cn/" target="_blank" rel="noopener">Node.js</a></li>
 <li><a href="http://gitforwindows.org/" target="_blank" rel="noopener">Git for Windows</a>  </li>
 </ul>
-<p>注意事项：安装 Git for Windows 时要添加到系统环境变量中，方便以后的操作。安装完成后，打开 Git Bash，以下所有命令将（且建议）在 Git Bash 中执行。</p>
-<h3 id="2-3-配置-SSH-key"><a href="#2-3-配置-SSH-key" class="headerlink" title="2.3 配置 SSH key"></a>2.3 配置 SSH key</h3><p><em>提交代码需要拥有你的 Github 权限才可以，但是直接使用用户名和密码不够安全，所以我们使用 SSH key 来解决本地和服务器的连接问题。</em><br>用 Git Bash 执行如下命令：  </p>
-<pre class=" language-text"><code class="language-text">$ cd ~/.ssh #检查本机已存在的 SSH 密钥
+<p>注意事项：安装 Git for Windows 时要选择添加到系统环境变量中，方便以后的操作。安装完成后，打开 Git Bash，以下所有命令将在 Git Bash 中执行。</p>
+<h3 id="2-3-配置-SSH-key"><a href="#2-3-配置-SSH-key" class="headerlink" title="2.3 配置 SSH key"></a>2.3 配置 SSH key</h3><p>提交代码需要拥有你的 Github 权限才可以，但是直接使用用户名和密码不够安全，所以我们使用 SSH key 来解决本地和服务器的连接问题。<br>用 Git Bash 执行如下命令：  </p>
+<pre class=" language-text"><code class="language-text">$ cd ~/.ssh  //检查本机已存在的 SSH 密钥
 </code></pre>
-<p>test29</p>
+<p>如果提示：No such file or directory 说明你是第一次使用 git 。</p>
+<pre class=" language-text"><code class="language-text">$ ssh-keygen -t rsa -C "你的 Github 邮件地址"
+</code></pre>
+<p>然后连续三次回车，最终会在用户目录下生成一个文件夹，打开 <code>C:\Users\你的用户名</code>，找到 <code>.ssh\id_rsa.pub</code> 文件，使用记事本打开并复制里面的内容，然后打开你的 Github 主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key -&gt; 将刚复制的内容粘贴到 key 那里，title 随意填，保存。  </p>
+<h3 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h3><pre class=" language-text"><code class="language-text">$ ssh -T git@github.com  //注意邮箱地址不用改
+</code></pre>
+<p>如果提示 <code>Are you sure you want to continue connecting (yes/no)?</code>，输入 <code>yes</code>，然后会看到：  </p>
+<blockquote>
+<p>Hi XXX! You’ve successfully authenticated, but GitHub does not provide shell access.  </p>
+</blockquote>
+<p>看到这个信息说明 SSH 已配置成功。<br>接下来，执行配置：</p>
+<pre class=" language-text"><code class="language-text">$ git config --global user.name "xxx"  //你的 Github 用户名
+$ git config --global user.email "xxx@mail.com"  //填写你的 Github 邮箱地址
+</code></pre>
+<h3 id="2-5-Hexo-的安装与配置"><a href="#2-5-Hexo-的安装与配置" class="headerlink" title="2.5 Hexo 的安装与配置"></a>2.5 Hexo 的安装与配置</h3><p><strong>此部分建议参考官方说明文档，有详细的指导和解释。</strong>  </p>
+<ul>
+<li><a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Documentaion | Hexo</a><h4 id="2-5-1-安装及初始化"><a href="#2-5-1-安装及初始化" class="headerlink" title="2.5.1 安装及初始化"></a>2.5.1 安装及初始化</h4>安装:<pre class=" language-text"><code class="language-text">$ npm install -g hexo-cli
+</code></pre>
+安装完成后，在电脑某个地方新建一个名为 hexo 的文件夹（名称可自定义），如 <code>D:\hexo</code>，将来这个文件夹会作为存放代码的地方。完成后执行：  <pre class=" language-text"><code class="language-text">$ cd /d/hexo
+$ hexo init
+</code></pre>
+Hexo 会自动下载一些文件到这个文件夹中，目录如下：  <pre class=" language-text"><code class="language-text">.
+├── _config.yml
+├── package.json
+├── scaffolds
+├── source
+|   ├── _drafts
+|   └── _posts
+└── themes
+</code></pre>
+<h4 id="2-5-2-配置"><a href="#2-5-2-配置" class="headerlink" title="2.5.2 配置"></a>2.5.2 配置</h4>请看这篇说明文档：  </li>
+<li><a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">Configuration | Hexo</a>  <h4 id="2-5-3-修改主题"><a href="#2-5-3-修改主题" class="headerlink" title="2.5.3 修改主题"></a>2.5.3 修改主题</h4>访问 Hexo 网站上提供的主题：  </li>
+<li><a href="https://hexo.io/themes/" target="_blank" rel="noopener">Themes | Hexo</a>  </li>
+</ul>
+<p>然后根据各个主题的说明操作。  </p>
+<blockquote>
+<p>注意 Hexo 根目录下的 <code>_config.yml</code> 和 <code>themes</code> 目录下的 <code>_config.yml</code> 这两者的区别。</p>
+<h4 id="2-5-4-写作"><a href="#2-5-4-写作" class="headerlink" title="2.5.4 写作"></a>2.5.4 写作</h4><p>参考：  </p>
+<ul>
+<li><a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">Writing | Hexo</a>  </li>
+</ul>
+</blockquote>
+<h4 id="2-5-5-上传到-Github"><a href="#2-5-5-上传到-Github" class="headerlink" title="2.5.5 上传到 Github"></a>2.5.5 上传到 Github</h4><p>首先，SSH key 肯定要配置好。<br>其次，配置 <code>_config.yml</code> 中有关 deploy 的部分:  </p>
+<pre class=" language-text"><code class="language-text">deploy:
+ type: git
+ repository: git@github.com:xxx/xxx.github.io.git  //注意冒号和 xxx 之间没有空格
+ branch: master
+</code></pre>
+<p>执行：  </p>
+<pre class=" language-text"><code class="language-text">$ hexo clean  //非必须。清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，需要运行该命令。
+$ hexo g  //生成静态文件
+</code></pre>
+<p>此时如果直接部署可能会报错，原因是缺少插件：  </p>
+<pre class=" language-text"><code class="language-text">$ npm install hexo-deployer-git --save
+</code></pre>
+<p>安装完成后，执行：</p>
+<pre class=" language-text"><code class="language-text">$ hexo d
+</code></pre>
+<p>完成部署。<br>此时，如果打开你的网页 <a href="https://xxx.github.io" target="_blank" rel="noopener">https://xxx.github.io</a> 应该能看到你发表的内容。<br>附：常用 Hexo 指令</p>
+<ul>
+<li><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Commands | Hexo</a>  </li>
+</ul>
+<p>test1</p>
 
             </div>
 
