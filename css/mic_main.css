@@ -93,9 +93,9 @@
 
 		@media screen and (orientation: portrait) {
 
-			/*#wrapper > .bg {
-				background-size: auto,								auto,														auto 145%;
-			}*/
+			#wrapper > .bg {
+				background-size: auto,								auto,														auto 100%;
+			}
 
 		}
 		@media screen and (max-width: 480px) {
