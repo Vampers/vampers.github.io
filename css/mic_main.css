@@ -54,12 +54,16 @@
 			height: 100%;
 			background-color: #212931;
 			background-image :url("../../images/bg.jpg") ;
-			background-position: center; 
+			background-size: auto,								auto,														100% auto;
+			background-position: center,								center,														top center;
+			background-repeat: repeat,								no-repeat,													no-repeat;
+			background-attachment: scroll,								scroll,														scroll;
+			/*background-position: center; 
 			background-repeat: no-repeat; 
 			background-attachment:fixed; 
 			background-size: cover; 
-			-webkit-background-size: cover;/* 兼容Webkit内核浏览器如Chrome和Safari */ 
-			-o-background-size: cover;/* 兼容Opera */ 
+			-webkit-background-size: cover;*//* 兼容Webkit内核浏览器如Chrome和Safari */ 
+			/*-o-background-size: cover;/* 兼容Opera */ 
 			zoom: 1; 
 			z-index: -1;
 		}
@@ -93,9 +97,9 @@
 
 		@media screen and (orientation: portrait) {
 
-			#wrapper > .bg {
-				background-size: auto,								auto,														auto 100%;
-			}
+			/*#wrapper > .bg {
+				background-size: auto,								auto,														auto 145%;
+			}*/
 
 		}
 		@media screen and (max-width: 480px) {
