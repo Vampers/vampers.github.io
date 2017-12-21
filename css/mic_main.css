@@ -93,15 +93,17 @@
 
 		@media screen and (orientation: portrait) {
 
-			#wrapper > .bg {
-				background-size: contain;
-				/*background-size: auto,								auto,														auto 145%;
+			/*#wrapper > .bg {
+				background-size: auto,								auto,														auto 145%;
 			}*/
 
 		}
 		@media screen and (max-width: 480px) {
 			#wrapper {
 				padding: 0;
+			}
+			#wrapper > .bg {
+				background-position: bottom left;
 			}
 		}
 
