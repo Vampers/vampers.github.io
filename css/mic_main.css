@@ -102,9 +102,6 @@
 			#wrapper {
 				padding: 0;
 			}
-			#wrapper > .bg {
-				background-position: bottom left;
-			}
 		}
 
 /* Intro */
