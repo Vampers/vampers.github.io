@@ -34,7 +34,7 @@ audio, canvas, video {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {
-  font: 400 1em/1.8 "1PingFang SC","Noto Sans", "Noto Sans SC", Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font: 400 1em/1.8 "1PingFang SC","Noto Sans", "Noto Sans SC Sliced", "Noto Sans SC", Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
 }
 
 button::-moz-focus-inner,
@@ -244,7 +244,7 @@ strong, b {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "1PingFang SC", "Noto Sans", "Noto Sans SC", "1Verdana", "1Helvetica Neue", Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
+  font-family: "1PingFang SC", "Noto Sans", "Noto Sans SC Sliced", "Noto Sans SC", "1Verdana", "1Helvetica Neue", Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans-serif;
   font-weight: 400;
   color: #000;
   line-height: 1.35;
