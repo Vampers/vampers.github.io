@@ -93,7 +93,8 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Hexo 是一个快速、简洁且高效的博客框架，支持丰富的插件和主题。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。本文主要介绍 Hexo 在 Github 和 VPS 上的搭建过程，操作系统环境为 Windows 10。  </p>
+                <p><em>本文是对此次建站过程的一个记录与小结，或许可以对他人有所启发，于是写在这里。</em><br><br>  </p>
+<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>Hexo 是一个快速、简洁且高效的博客框架，支持丰富的插件和主题。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。本文主要介绍 Hexo 在 Github 和 VPS 上的搭建过程，操作系统环境为 Windows 10。  </p>
 <h2 id="2-Github-上的搭建过程"><a href="#2-Github-上的搭建过程" class="headerlink" title="2. Github 上的搭建过程"></a>2. Github 上的搭建过程</h2><h3 id="2-1-创建仓库"><a href="#2-1-创建仓库" class="headerlink" title="2.1 创建仓库"></a>2.1 创建仓库</h3><p>在你的 Github 账号下新建一个名为 <code>你的用户名.github.io</code> 的仓库。例如，你的 Github 用户名为 xxx，则创建 <code>xxx.github.io</code>，将来你的网站访问地址就是 <code>https://xxx.github.io</code>。可见一个 Github 账号最多只能有一个这样的仓库。  </p>
 <h3 id="2-2-环境搭建"><a href="#2-2-环境搭建" class="headerlink" title="2.2 环境搭建"></a>2.2 环境搭建</h3><p>在本地安装以下工具：  </p>
 <ul>
@@ -102,21 +103,21 @@
 </ul>
 <p>注意事项：安装 Git for Windows 时要选择添加到系统环境变量中，方便以后的操作。安装完成后，打开 Git Bash，以下所有命令将在 Git Bash 中执行。</p>
 <h3 id="2-3-配置-SSH-key"><a href="#2-3-配置-SSH-key" class="headerlink" title="2.3 配置 SSH key"></a>2.3 配置 SSH key</h3><p>提交代码需要拥有你的 Github 权限才可以，但是直接使用用户名和密码不够安全，所以我们使用 SSH key 来解决本地和服务器的连接问题。<br>用 Git Bash 执行如下命令：  </p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> ~/.ssh  //检查本机已存在的 SSH 密钥
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> ~/.ssh     //检查本机已存在的 SSH 密钥
 </code></pre>
-<p>如果提示：No such file or directory 说明你是第一次使用 git 。</p>
+<p>如果提示： <code>No such file or directory</code> 说明你是第一次使用 git 。</p>
 <pre class=" language-bash"><code class="language-bash">$ ssh-keygen -t rsa -C <span class="token string">"你的 Github 邮件地址"</span>
 </code></pre>
 <p>然后连续三次回车，最终会在用户目录下生成一个文件夹，打开 <code>C:\Users\你的用户名</code>，找到 <code>.ssh\id_rsa.pub</code> 文件，使用记事本打开并复制里面的内容，然后打开你的 Github 主页，进入个人设置 -&gt; SSH and GPG keys -&gt; New SSH key -&gt; 将刚复制的内容粘贴到 key 那里，title 随意填，保存。  </p>
-<h3 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h3><pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> -T git@github.com  //注意邮箱地址不用改
+<h3 id="2-4-测试"><a href="#2-4-测试" class="headerlink" title="2.4 测试"></a>2.4 测试</h3><pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> -T git@github.com     //注意邮箱地址不用改
 </code></pre>
 <p>如果提示 <code>Are you sure you want to continue connecting (yes/no)?</code>，输入 <code>yes</code>，然后会看到：  </p>
 <blockquote>
 <p>Hi XXX! You’ve successfully authenticated, but GitHub does not provide shell access.  </p>
 </blockquote>
 <p>看到这个信息说明 SSH 已配置成功。<br>接下来，执行配置：</p>
-<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> config --global user.name <span class="token string">"xxx"</span>  //你的 Github 用户名
-$ <span class="token function">git</span> config --global user.email <span class="token string">"xxx@mail.com"</span>  //填写你的 Github 邮箱地址
+<pre class=" language-bash"><code class="language-bash">$ <span class="token function">git</span> config --global user.name <span class="token string">"xxx"</span>   //你的 Github 用户名
+$ <span class="token function">git</span> config --global user.email <span class="token string">"xxx@mail.com"</span>     //填写你的 Github 邮箱地址
 </code></pre>
 <h3 id="2-5-Hexo-的安装与配置"><a href="#2-5-Hexo-的安装与配置" class="headerlink" title="2.5 Hexo 的安装与配置"></a>2.5 Hexo 的安装与配置</h3><p><strong>此部分建议参考官方说明文档，有详细的指导和解释。</strong>  </p>
 <ul>
@@ -158,12 +159,12 @@ $ hexo init
 <h4 id="2-5-5-上传到-Github"><a href="#2-5-5-上传到-Github" class="headerlink" title="2.5.5 上传到 Github"></a>2.5.5 上传到 Github</h4><p>首先，SSH key 肯定要配置好。<br>其次，配置 <code>_config.yml</code> 中有关 deploy 的部分:  </p>
 <pre class=" language-text"><code class="language-text">deploy:
  type: git
- repository: git@github.com:xxx/xxx.github.io.git  //注意冒号和 xxx 之间没有空格
+ repository: git@github.com:xxx/xxx.github.io.git   //注意冒号和 xxx 之间没有空格
  branch: master
 </code></pre>
 <p>执行：  </p>
-<pre class=" language-bash"><code class="language-bash">$ hexo clean  //非必须。清除缓存文件 <span class="token punctuation">(</span>db.json<span class="token punctuation">)</span> 和已生成的静态文件 <span class="token punctuation">(</span>public<span class="token punctuation">)</span>。在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，需要运行该命令。
-$ hexo g  //生成静态文件
+<pre class=" language-bash"><code class="language-bash">$ hexo clean    //非必须。清除缓存文件 <span class="token punctuation">(</span>db.json<span class="token punctuation">)</span> 和已生成的静态文件 <span class="token punctuation">(</span>public<span class="token punctuation">)</span>。在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，需要运行该命令。
+$ hexo g    //生成静态文件
 </code></pre>
 <p>此时如果直接部署可能会报错，原因是缺少插件：  </p>
 <pre class=" language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git --save
@@ -176,7 +177,7 @@ $ hexo g  //生成静态文件
 <li><em><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Commands | Hexo</a></em>  </li>
 </ul>
 <p><em>关于 Markdown 编辑器，个人推荐 VS Code 或者 Atom，用起来赏心悦目，本文即是由 VS Code 撰写的。</em>  </p>
-<h2 id="3-VPS-上的搭建过程"><a href="#3-VPS-上的搭建过程" class="headerlink" title="3. VPS 上的搭建过程"></a>3. VPS 上的搭建过程</h2><p><strong>在进行这一部分之前，建议先完成本文前述的所有步骤，并确保正确无误。</strong></p>
+<h2 id="3-VPS-上的搭建过程"><a href="#3-VPS-上的搭建过程" class="headerlink" title="3. VPS 上的搭建过程"></a>3. VPS 上的搭建过程</h2><p><strong>在进行这一部分之前，建议先完成本文前述的所有步骤，并确保正确无误，这将节省一部分步骤与时间。</strong></p>
 <h3 id="3-1-域名解析"><a href="#3-1-域名解析" class="headerlink" title="3.1 域名解析"></a>3.1 域名解析</h3><ul>
 <li>如果你还没有域名，那么你将需要购买一个，可以前往 <a href="https://sg.godaddy.com/zh/" target="_blank" rel="noopener">GoDaddy</a> 或其他域名销售网站购买。</li>
 <li>然后前往 <a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a>，选择 <code>域名解析</code>，填入你的域名，可以看到应该有 4 条记录类型，两条 <code>NS</code> 类型，一条 <code>A</code> 类型，一条 <code>CNAME</code> 类型。其中两条 <code>NS</code> 的记录类型是 DNSPod 默认配置的，无法修改，你需要在 <code>A</code> 记录类型中将记录值改为你的 VPS 的 IP 地址。</li>
@@ -184,19 +185,98 @@ $ hexo g  //生成静态文件
 <li>点击保存，等待全球递归DNS服务器刷新（最多72小时）。</li>
 <li>在等待生效过程中，你正好可以开始配置你的 VPS 。  </li>
 </ul>
-<h3 id="3-2-VPS-配置"><a href="#3-2-VPS-配置" class="headerlink" title="3.2 VPS 配置"></a>3.2 VPS 配置</h3><p>首先，在本地端安装 SSH 工具，这类工具有很多，使用方法也大同小异。本文将以 <a href="http://www.netsarang.com/xshell_download.html" target="_blank" rel="noopener">Xshell</a> 为例进行操作。  </p>
-<h4 id="3-2-1-建立本地端和-VPS-服务器端的-SSH-连接"><a href="#3-2-1-建立本地端和-VPS-服务器端的-SSH-连接" class="headerlink" title="3.2.1 建立本地端和 VPS 服务器端的 SSH 连接"></a>3.2.1 建立本地端和 VPS 服务器端的 SSH 连接</h4><ul>
-<li>在网页上登录你的 VPS 控制台，记录下 IP 地址，SSH 连接端口号，以及 root 用户的密码。</li>
+<h3 id="3-2-建立本地端和-VPS-端的-SSH-连接"><a href="#3-2-建立本地端和-VPS-端的-SSH-连接" class="headerlink" title="3.2 建立本地端和 VPS 端的 SSH 连接"></a>3.2 建立本地端和 VPS 端的 SSH 连接</h3><p>首先，在本地端安装 SSH 工具，这类工具有很多，使用方法也大同小异。本文将以 <a href="http://www.netsarang.com/xshell_download.html" target="_blank" rel="noopener">Xshell</a> 为例进行操作。  * 在网页上登录你的 VPS 控制台，记录下 IP 地址，SSH 连接端口号，以及 root 用户的密码。</p>
+<ul>
 <li>打开 Xshell，选择 <code>新建连接</code>，在 <code>Host</code> 一栏中填写 VPS 的 IP 地址，在 <code>Port Number</code> 一栏中填写 VPS 的 SSH 连接端口号，填好保存，建立连接。</li>
 <li>连接过程中 Xshell 会弹框要求输入用户名和密码，用户名输入 <code>root</code>，密码输入你刚才记录的密码。</li>
-<li><p>连接成功建立后，会在 Xshell 上显示:</p>
-<blockquote>
+<li>连接成功建立后，会在 Xshell 上显示:<blockquote>
 <p>Connection established.<br>[root@localhost ~]#  </p>
 </blockquote>
 </li>
-<li><p>test2</p>
-</li>
 </ul>
+<h3 id="3-3-VPS-端的配置"><a href="#3-3-VPS-端的配置" class="headerlink" title="3.3 VPS 端的配置"></a>3.3 VPS 端的配置</h3><h4 id="3-3-1-创建用户"><a href="#3-3-1-创建用户" class="headerlink" title="3.3.1 创建用户"></a>3.3.1 创建用户</h4><ol>
+<li>创建用户用于服务器端站点管理，如下：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># adduser hexo  //创建用户</span>
+<span class="token comment" spellcheck="true"># passwd hexo   //设置密码，可能看不见输入的字符，正常输入即可</span>
+</code></pre>
+</li>
+<li>安装 Sudo：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># yum install sudo</span>
+</code></pre>
+</li>
+<li>赋予 hexo 用户 root 权限，以便接下来的操作:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
+</code></pre>
+<blockquote>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，建议自行搜索:</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>「i」进入插入模式</li>
+<li>「ESC」退出插入模式</li>
+<li><code>:wq!</code> 保存并退出</li>
+<li><code>:q!</code> 不保存并退出  </li>
+</ul>
+<p>找到这一行并添加:</p>
+<pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
+hexo        ALL=(ALL)       ALL     //这个是添加的
+</code></pre>
+<p><strong>注意：服务器端代码如果是 # 开头代表 root 用户的命令， $ 开头代表 hexo 用户的命令。</strong></p>
+<h4 id="3-3-2-配置本地端无密码-SSH-登录服务器端"><a href="#3-3-2-配置本地端无密码-SSH-登录服务器端" class="headerlink" title="3.3.2 配置本地端无密码 SSH 登录服务器端"></a>3.3.2 配置本地端无密码 SSH 登录服务器端</h4><p>在前述步骤中我们已经在本地生成了 SSH 密钥，这里可以直接拿来使用而无需再次生成。  </p>
+<ol>
+<li>服务器端查看是否有安装 SSH ：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># rpm -qa |grep ssh</span>
+</code></pre>
+如果返回有 <code>openssh</code> 开头的信息，则代表已安装。<br>没有的话使用 yum 安装：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># yum install ssh</span>
+</code></pre>
+</li>
+<li>启动服务:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># service sshd start</span>
+<span class="token comment" spellcheck="true"># service sshd status</span>
+</code></pre>
+</li>
+<li>服务器端在用户主目录下新建 <code>.ssh</code> 文件夹并拷贝本地端公钥内容到 <code>.ssh</code> 目录下的 <code>authorized_keys</code>:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
+$ <span class="token function">cd</span> ~
+$ <span class="token function">mkdir</span> .ssh
+$ <span class="token function">cd</span> .ssh
+$ <span class="token keyword">echo</span> <span class="token string">"本地端 SSH 密钥(全部内容)"</span> <span class="token operator">></span> authorized_keys  //密钥在 C:\Users\你的用户名\.ssh\id_rsa.pub 中
+</code></pre>
+修改权限：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">chmod</span> 700 ~/.ssh
+$ <span class="token function">chmod</span> 600 ~/.ssh/authorized_keys
+</code></pre>
+</li>
+<li>进行验证：<br>打开 Git Bash ：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> hexo@你的VPS的IP地址 -p 端口号 //@ 前是你创建的站点管理用户，本文中是 hexo
+</code></pre>
+第一次可能需要输入密码，此后不再需要，可直接连接。  <h4 id="3-3-3-安装配置-nginx"><a href="#3-3-3-安装配置-nginx" class="headerlink" title="3.3.3 安装配置 nginx"></a>3.3.3 安装配置 nginx</h4>简单来说， nginx 是代理服务器，有了它我们就能按照域名或IP地址访问网页。<br>添加 nginx 源，在 <code>/etc/yum.repos.d</code> 目录下创建一个 yum 源文件<code>nginx.repo</code>：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">su</span> root
+<span class="token comment" spellcheck="true"># vi /etc/yum.repos.d/nginx.repo</span>
+</code></pre>
+写入如下内容：<pre class=" language-text"><code class="language-text">[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+</code></pre>
+安装 nginx ：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># cd ~</span>
+<span class="token comment" spellcheck="true"># yum install nginx -y</span>
+<span class="token comment" spellcheck="true"># nginx -v  //查看版本号验证</span>
+</code></pre>
+删除原配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># rm /etc/nginx/conf.d/*</span>
+</code></pre>
+重新配置：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/conf.d/hexo.conf</span>
+</code></pre>
+添加以下内容：<pre class=" language-text"><code class="language-text">server {
+root /home/hexo/www;  #网站根目录,用来存储网站文件，后面会创建
+index index.html index.htm;
+server_name foversty.com;   #你的域名
+location / {
+ try_files $uri $uri/ /index.html;
+}
+}
+</code></pre>
+需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。<br>修改nginx配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
+</code></pre>
+将其中 user 的值改为 <code>hexo</code>。<br>切换到 hexo 用户，用户主目录下新建 <code>www</code> 文件夹作为网站根目录：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
+$ <span class="token function">cd</span> ~
+$ <span class="token function">mkdir</span> www
+</code></pre>
+验证配置是否正确</li>
+</ol>
 
             </div>
 
