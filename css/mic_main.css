@@ -501,7 +501,7 @@
 	}
 
 	code {
-		font-family: "Consolas", "Courier", "Courier New", monospace;
+		font-family: "Consolas", "Courier New", "Courier", monospace;
 		font-size: 0.9rem;
 	}
 
@@ -568,8 +568,15 @@
 	}
 
 	code {
-		background: rgba(220, 220, 220, 0.25);
-		border-color: #eeeeee;
+		/*background: rgba(220, 220, 220, 0.25);
+		border-color: #eeeeee;*/
+		position: relative;
+		padding: .2em;
+		border-radius: 0.3em;
+		color: #c92c2c;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+		display: inline;
+		white-space: normal;
 	}
 
 	hr {
