@@ -325,27 +325,31 @@ git clone $GIT_REPO $TMP_GIT_CLONE
 rm -rf ${PUBLIC_WWW}/*
 cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}
 </code></pre>
-<h3 id="3-4-本地端部署验证"><a href="#3-4-本地端部署验证" class="headerlink" title="3.4 本地端部署验证"></a>3.4 本地端部署验证</h3>由于前述步骤中本地端已经安装好了 Hexo，所以只需要修改 <code>_config.yml</code> 文件，即可进行部署到 VPS 。<br>url 项配置：<pre class=" language-text"><code class="language-text"># URL
+</li>
+</ol>
+<h3 id="3-4-本地端部署验证"><a href="#3-4-本地端部署验证" class="headerlink" title="3.4 本地端部署验证"></a>3.4 本地端部署验证</h3><p>由于前述步骤中本地端已经安装好了 Hexo，所以只需要修改 <code>_config.yml</code> 文件，即可进行部署到 VPS 。<br>url 项配置：</p>
+<pre class=" language-text"><code class="language-text"># URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://foversty.com    #你的博客网址
 root: /
 </code></pre>
-deployment 项配置：<pre class=" language-text"><code class="language-text"># Deployment
+<p>deployment 项配置：</p>
+<pre class=" language-text"><code class="language-text"># Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git  
-repository: git@github.com:xxx/xxx.github.io.git  
-branch: master   //之前配置的部署到 Github 的有关信息  
-- type: git  
-repo: ssh://hexo@你的VPS的IP地址:端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  
-branch: master
+ - type: git  
+   repository: git@github.com:xxx/xxx.github.io.git  
+   branch: master   //之前配置的部署到 Github 的有关信息  
+ - type: git  
+   repo: ssh://hexo@你的VPS的IP地址:端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  
+   branch: master
 </code></pre>
-这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：<pre class=" language-bash"><code class="language-bash">$ hexo clean
+<p>这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：</p>
+<pre class=" language-bash"><code class="language-bash">$ hexo clean
 $ hexo g
 $ hexo d
 </code></pre>
-至此，配置过程完全结束，你可以打开浏览器，输入你的域名，查看你发布的内容。  </li>
-</ol>
+<p>至此，配置过程完全结束，你可以打开浏览器，输入你的域名，查看你发布的内容。  </p>
 <h5 id="完结撒花！"><a href="#完结撒花！" class="headerlink" title="完结撒花！"></a>完结撒花！</h5>
             </div>
 
