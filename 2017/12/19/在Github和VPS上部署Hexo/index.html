@@ -333,11 +333,11 @@ root: /
 deployment 项配置：<pre class=" language-text"><code class="language-text"># Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
-repository: git@github.com:xxx/xxx.github.io.git
-branch: master   //之前配置的部署到 Github 的有关信息
-- type: git
-repo: ssh://hexo@你的VPS的IP地址:端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格
+- type: git  
+repository: git@github.com:xxx/xxx.github.io.git  
+branch: master   //之前配置的部署到 Github 的有关信息  
+- type: git  
+repo: ssh://hexo@你的VPS的IP地址:端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  
 branch: master
 </code></pre>
 这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：<pre class=" language-bash"><code class="language-bash">$ hexo clean
