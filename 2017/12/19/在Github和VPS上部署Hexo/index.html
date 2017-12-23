@@ -185,7 +185,7 @@ $ hexo g    //生成静态文件
 <li>点击保存，等待全球递归DNS服务器刷新（最多72小时）。</li>
 <li>在等待生效过程中，你正好可以开始配置你的 VPS 。  </li>
 </ul>
-<h3 id="3-2-建立本地端和-VPS-端的-SSH-连接"><a href="#3-2-建立本地端和-VPS-端的-SSH-连接" class="headerlink" title="3.2 建立本地端和 VPS 端的 SSH 连接"></a>3.2 建立本地端和 VPS 端的 SSH 连接</h3><p>首先，在本地端安装 SSH 工具，这类工具有很多，使用方法也大同小异。本文将以 <a href="http://www.netsarang.com/xshell_download.html" target="_blank" rel="noopener">Xshell</a> 为例进行操作。  * 在网页上登录你的 VPS 控制台，记录下 IP 地址，SSH 连接端口号，以及 root 用户的密码。</p>
+<h3 id="3-2-建立本地端和-VPS-端的-SSH-连接"><a href="#3-2-建立本地端和-VPS-端的-SSH-连接" class="headerlink" title="3.2 建立本地端和 VPS 端的 SSH 连接"></a>3.2 建立本地端和 VPS 端的 SSH 连接</h3><p>首先，在本地端安装 SSH 工具，这类工具有很多，使用方法也大同小异。本文将以 <a href="http://www.netsarang.com/xshell_download.html" target="_blank" rel="noopener">Xshell</a> 为例进行操作。<br>在网页上登录你的 VPS 控制台，记录下 IP 地址，SSH 连接端口号，以及 root 用户的密码。</p>
 <ul>
 <li>打开 Xshell，选择 <code>新建连接</code>，在 <code>Host</code> 一栏中填写 VPS 的 IP 地址，在 <code>Port Number</code> 一栏中填写 VPS 的 SSH 连接端口号，填好保存，建立连接。</li>
 <li>连接过程中 Xshell 会弹框要求输入用户名和密码，用户名输入 <code>root</code>，密码输入你刚才记录的密码。</li>
@@ -208,7 +208,7 @@ $ hexo g    //生成静态文件
 hexo        ALL=(ALL)       ALL     //这个是添加的
 </code></pre>
 <blockquote>
-<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
 </blockquote>
 </li>
 </ol>
@@ -234,9 +234,9 @@ $ <span class="token keyword">echo</span> <span class="token string">"本地端 
 $ <span class="token function">chmod</span> 600 ~/.ssh/authorized_keys
 </code></pre>
 </li>
-<li>进行验证：<br>打开 Git Bash ：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> hexo@你的VPS的IP地址 -p 端口号 //@前是你创建的站点管理用户，本文中是 hexo
+<li>进行验证：<br>打开 Git Bash，执行：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> hexo@你的VPS的IP地址 -p 端口号 //@前是你创建的站点管理用户，本文中是 hexo
 </code></pre>
-第一次可能需要输入密码，此后不再需要，可直接连接。  </li>
+第一次连接可能需要输入密码，此后不再需要，可直接连接。  </li>
 </ol>
 <h4 id="3-3-3-安装配置-nginx"><a href="#3-3-3-安装配置-nginx" class="headerlink" title="3.3.3 安装配置 nginx"></a>3.3.3 安装配置 nginx</h4><p>简单来说， nginx 是代理服务器，有了它我们就能按照域名或IP地址访问网页。  </p>
 <ol>
@@ -270,7 +270,7 @@ location / {
 }
 </code></pre>
 需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。  </li>
-<li>修改nginx配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
+<li>修改 nginx 配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
 </code></pre>
 将其中 user 的值改为 <code>hexo</code>。并在 <code>http</code> 段落中添加以下内容以开启 GZIP 压缩，加快网站访问速度。  <pre class=" language-text"><code class="language-text"># 开启gzip
 gzip on;
@@ -299,7 +299,9 @@ $ <span class="token keyword">echo</span> <span class="token string">"hello ngin
 </code></pre>
 在浏览器中输入你的域名或者 VPS 的 IP 地址（取决于域名解析是否已经生效），出现 <code>hello nginx!</code> 字样表示 nginx 代理服务器搭建成功。然后删除 <code>index.html</code> 吧。  <pre class=" language-bash"><code class="language-bash">$ <span class="token function">rm</span> /home/hexo/www/index.html
 </code></pre>
-<h4 id="3-3-4-安装和配置-Git"><a href="#3-3-4-安装和配置-Git" class="headerlink" title="3.3.4 安装和配置 Git"></a>3.3.4 安装和配置 Git</h4></li>
+</li>
+</ol>
+<h4 id="3-3-4-安装和配置-Git"><a href="#3-3-4-安装和配置-Git" class="headerlink" title="3.3.4 安装和配置 Git"></a>3.3.4 安装和配置 Git</h4><ol>
 <li>安装 Git<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span>
 </code></pre>
 </li>
