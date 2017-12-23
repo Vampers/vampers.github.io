@@ -234,9 +234,13 @@ $ <span class="token keyword">echo</span> <span class="token string">"本地端 
 $ <span class="token function">chmod</span> 600 ~/.ssh/authorized_keys
 </code></pre>
 </li>
-<li>进行验证：<br>打开 Git Bash ：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> hexo@你的VPS的IP地址 -p 端口号 //@ 前是你创建的站点管理用户，本文中是 hexo
+<li>进行验证：<br>打开 Git Bash ：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">ssh</span> hexo@你的VPS的IP地址 -p 端口号 //@前是你创建的站点管理用户，本文中是 hexo
 </code></pre>
-第一次可能需要输入密码，此后不再需要，可直接连接。  <h4 id="3-3-3-安装配置-nginx"><a href="#3-3-3-安装配置-nginx" class="headerlink" title="3.3.3 安装配置 nginx"></a>3.3.3 安装配置 nginx</h4>简单来说， nginx 是代理服务器，有了它我们就能按照域名或IP地址访问网页。<br>添加 nginx 源，在 <code>/etc/yum.repos.d</code> 目录下创建一个 yum 源文件<code>nginx.repo</code>：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">su</span> root
+第一次可能需要输入密码，此后不再需要，可直接连接。  </li>
+</ol>
+<h4 id="3-3-3-安装配置-nginx"><a href="#3-3-3-安装配置-nginx" class="headerlink" title="3.3.3 安装配置 nginx"></a>3.3.3 安装配置 nginx</h4><p>简单来说， nginx 是代理服务器，有了它我们就能按照域名或IP地址访问网页。  </p>
+<ol>
+<li>添加 nginx 源，在 <code>/etc/yum.repos.d</code> 目录下创建一个 yum 源文件<code>nginx.repo</code>：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">su</span> root
 <span class="token comment" spellcheck="true"># vi /etc/yum.repos.d/nginx.repo</span>
 </code></pre>
 写入如下内容：<pre class=" language-text"><code class="language-text">[nginx]
@@ -245,13 +249,16 @@ baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
 gpgcheck=0
 enabled=1
 </code></pre>
-安装 nginx ：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># cd ~</span>
+</li>
+<li>安装 nginx ：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># cd ~</span>
 <span class="token comment" spellcheck="true"># yum install nginx -y</span>
 <span class="token comment" spellcheck="true"># nginx -v  //查看版本号验证</span>
 </code></pre>
-删除原配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># rm /etc/nginx/conf.d/*</span>
+</li>
+<li>删除原配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># rm /etc/nginx/conf.d/*</span>
 </code></pre>
-重新配置：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/conf.d/hexo.conf</span>
+</li>
+<li>重新配置：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/conf.d/hexo.conf</span>
 </code></pre>
 添加以下内容：<pre class=" language-text"><code class="language-text">server {
 root /home/hexo/www;  #网站根目录,用来存储网站文件，后面会创建
@@ -262,14 +269,23 @@ location / {
 }
 }
 </code></pre>
-需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。<br>修改nginx配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
+需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。  </li>
+<li>修改nginx配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
 </code></pre>
-将其中 user 的值改为 <code>hexo</code>。<br>切换到 hexo 用户，用户主目录下新建 <code>www</code> 文件夹作为网站根目录：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
+将其中 user 的值改为 <code>hexo</code>。  </li>
+<li>切换到 hexo 用户，用户主目录下新建 <code>www</code> 文件夹作为网站根目录：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
 $ <span class="token function">cd</span> ~
 $ <span class="token function">mkdir</span> www
 </code></pre>
-验证配置是否正确</li>
+</li>
+<li>验证配置是否正确：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> nginx -t
+</code></pre>
+如果显示以下信息，说明配置正确：<blockquote>
+<p>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok<br>nginx: configuration file /etc/nginx/nginx.conf test is successful  </p>
+</blockquote>
+</li>
 </ol>
+<p>&ensp;&ensp;hello</p>
 
             </div>
 
