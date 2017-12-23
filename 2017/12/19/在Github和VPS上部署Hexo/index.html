@@ -272,7 +272,20 @@ location / {
 需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。  </li>
 <li>修改nginx配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
 </code></pre>
-将其中 user 的值改为 <code>hexo</code>。  </li>
+将其中 user 的值改为 <code>hexo</code>。并在 <code>http</code> 段落中添加以下内容以开启 GZIP 压缩，加快网站访问速度。  <pre class=" language-text"><code class="language-text"># 开启gzip
+gzip on;
+# 启用gzip压缩的最小文件，小于设置值的文件将不会压缩
+gzip_min_length 1k;
+# gzip 压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明
+gzip_comp_level 2;
+# 进行压缩的文件类型。javascript有多种形式。其中的值可以在 mime.types 文件中找到。
+gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+# 是否在http header中添加Vary: Accept-Encoding，建议开启
+gzip_vary on;
+# 禁用IE 6 gzip
+gzip_disable "MSIE [1-6]\.";
+</code></pre>
+</li>
 <li>切换到 hexo 用户，用户主目录下新建 <code>www</code> 文件夹作为网站根目录：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
 $ <span class="token function">cd</span> ~
 $ <span class="token function">mkdir</span> www
@@ -280,13 +293,58 @@ $ <span class="token function">mkdir</span> www
 </li>
 <li>验证配置是否正确：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> nginx -t
 </code></pre>
-如果显示以下信息，说明配置正确：<blockquote>
-<p>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok<br>nginx: configuration file /etc/nginx/nginx.conf test is successful  </p>
-</blockquote>
+如果显示 <code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</code> 和 <code>nginx: configuration file /etc/nginx/nginx.conf test is successful</code>，说明配置正确。  </li>
+<li>启动 nginx 服务并测试<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> <span class="token function">service</span> nginx start
+$ <span class="token keyword">echo</span> <span class="token string">"hello nginx!"</span> <span class="token operator">></span> /home/hexo/www/index.html   //站点根目录下新建 index.html
+</code></pre>
+在浏览器中输入你的域名或者 VPS 的 IP 地址（取决于域名解析是否已经生效），出现 <code>hello nginx!</code> 字样表示 nginx 代理服务器搭建成功。然后删除 <code>index.html</code> 吧。  <pre class=" language-bash"><code class="language-bash">$ <span class="token function">rm</span> /home/hexo/www/index.html
+</code></pre>
+<h4 id="3-3-4-安装和配置-Git"><a href="#3-3-4-安装和配置-Git" class="headerlink" title="3.3.4 安装和配置 Git"></a>3.3.4 安装和配置 Git</h4></li>
+<li>安装 Git<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span>
+</code></pre>
 </li>
+<li>初始化 Git 仓库<br>用户主目录下新建 <code>hexo.git</code> 文件夹用作 Git 仓库并初始化：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> ~
+$ <span class="token function">mkdir</span> hexo.git
+$ <span class="token function">cd</span> hexo.git
+$ <span class="token function">git</span> init --bare   //初始化 Git 仓库
+</code></pre>
+</li>
+<li>配置 Git 仓库的 hooks<br>hooks 可以将不同目录的数据实现同步。具体如下，在 Git 仓库 <code>hooks</code> 目录下创建文件 <code>post-receive</code> 并修改权限：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hooks
+$ <span class="token function">touch</span> post-receive
+$ <span class="token function">chmod</span> 755 post-receive
+$ <span class="token function">vi</span> post-receive
+</code></pre>
+将以下内容添加到 <code>post-receive</code> 中：<pre class=" language-text"><code class="language-text">#!/bin/bash
+GIT_REPO=/home/hexo/hexo.git
+TMP_GIT_CLONE=/tmp/HexoBlog
+PUBLIC_WWW=/home/hexo/www
+rm -rf ${TMP_GIT_CLONE}
+git clone $GIT_REPO $TMP_GIT_CLONE
+rm -rf ${PUBLIC_WWW}/*
+cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}
+</code></pre>
+<h3 id="3-4-本地端部署验证"><a href="#3-4-本地端部署验证" class="headerlink" title="3.4 本地端部署验证"></a>3.4 本地端部署验证</h3>由于前述步骤中本地端已经安装好了 HEXO，所以只需要修改 <code>_config.yml</code> 文件，即可进行部署到 VPS 。<br>url 项配置：<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># URL</span>
+<span class="token comment" spellcheck="true">## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'</span>
+<span class="token key atrule">url</span><span class="token punctuation">:</span> http<span class="token punctuation">:</span>//foversty.com    <span class="token comment" spellcheck="true">#你的博客网址</span>
+<span class="token key atrule">root</span><span class="token punctuation">:</span> /
+</code></pre>
+deployment 项配置：<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Deployment</span>
+<span class="token comment" spellcheck="true">## Docs: https://hexo.io/docs/deployment.html</span>
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+<span class="token key atrule">repository</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>xxx/xxx.github.io.git
+<span class="token key atrule">branch</span><span class="token punctuation">:</span> master   //之前配置的部署到 Github 的有关信息
+<span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+<span class="token key atrule">repo</span><span class="token punctuation">:</span> ssh<span class="token punctuation">:</span>//hexo@你的VPS的IP地址<span class="token punctuation">:</span>端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格
+<span class="token key atrule">branch</span><span class="token punctuation">:</span> master
+</code></pre>
+这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：<pre class=" language-bash"><code class="language-bash">$ hexo clean
+$ hexo g
+$ hexo d
+</code></pre>
+至此，配置过程完全结束，你可以打开浏览器，输入你的域名，查看你发布的内容。  </li>
 </ol>
-<p>&ensp;&ensp;&ensp;&ensp;&ensp;如果</p>
-
+<h5 id="完结撒花！"><a href="#完结撒花！" class="headerlink" title="完结撒花！"></a>完结撒花！</h5>
             </div>
 
             <!-- Post Comments -->
