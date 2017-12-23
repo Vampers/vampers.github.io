@@ -196,15 +196,15 @@ $ hexo g    //生成静态文件
 </li>
 </ul>
 <h3 id="3-3-VPS-端的配置"><a href="#3-3-VPS-端的配置" class="headerlink" title="3.3 VPS 端的配置"></a>3.3 VPS 端的配置</h3><h4 id="3-3-1-创建用户"><a href="#3-3-1-创建用户" class="headerlink" title="3.3.1 创建用户"></a>3.3.1 创建用户</h4><ol>
-<li>创建用户用于服务器端站点管理，如下：<pre class=" language-shell"><code class="language-shell"># adduser hexo  //创建用户
-# passwd hexo   //设置密码，可能看不见输入的字符，正常输入即可
+<li>创建用户用于服务器端站点管理，如下：<pre class=" language-basic"><code class="language-basic"># adduser hexo  <span class="token operator">/</span><span class="token operator">/</span>创建用户
+# passwd hexo   <span class="token operator">/</span><span class="token operator">/</span>设置密码，可能看不见输入的字符，正常输入即可
 </code></pre>
 </li>
-<li>安装 Sudo：<pre class=" language-shell"><code class="language-shell"># yum install sudo
+<li>安装 Sudo：<pre class=" language-basic"><code class="language-basic"># yum install sudo
 </code></pre>
 </li>
 <li><p>赋予 hexo 用户 root 权限，以便接下来的操作:</p>
-<pre class=" language-shell"><code class="language-shell"># vi /etc/sudoers
+<pre class=" language-basic"><code class="language-basic"># vi <span class="token operator">/</span>etc<span class="token operator">/</span>sudoers
 </code></pre>
 <p>找到这一行并添加:</p>
 <pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
@@ -227,11 +227,11 @@ hexo        ALL=(ALL)       ALL     //这个是添加的
 # service sshd status
 </code></pre>
 </li>
-<li>服务器端在用户主目录下新建 <code>.ssh</code> 文件夹并拷贝本地端公钥内容到 <code>.ssh</code> 目录下的 <code>authorized_keys</code>:<pre class=" language-shell"><code class="language-shell"># su hexo
+<li>服务器端在用户主目录下新建 <code>.ssh</code> 文件夹并拷贝本地端公钥内容到 <code>.ssh</code> 目录下的 <code>authorized_keys</code>:<pre class=" language-basic"><code class="language-basic"># su hexo
 $ cd ~
-$ mkdir .ssh
+$ <span class="token keyword">mkdir</span> .ssh
 $ cd .ssh
-$ echo "本地端 SSH 密钥(全部内容)" > authorized_keys  //密钥在 C:\Users\你的用户名\.ssh\id_rsa.pub 中
+$ echo "本地端 SSH 密钥<span class="token punctuation">(</span>全部内容<span class="token punctuation">)</span>" <span class="token operator">></span> authorized_keys  <span class="token operator">/</span><span class="token operator">/</span>密钥在 C<span class="token punctuation">:</span>\Users\你的用户名\.ssh\id_rsa.pub 中
 </code></pre>
 修改权限：<pre class=" language-shell"><code class="language-shell">$ chmod 700 ~/.ssh
 $ chmod 600 ~/.ssh/authorized_keys
