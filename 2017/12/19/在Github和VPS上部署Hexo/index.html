@@ -189,8 +189,9 @@ $ hexo g    //生成静态文件
 <ul>
 <li>打开 Xshell，选择 <code>新建连接</code>，在 <code>Host</code> 一栏中填写 VPS 的 IP 地址，在 <code>Port Number</code> 一栏中填写 VPS 的 SSH 连接端口号，填好保存，建立连接。</li>
 <li>连接过程中 Xshell 会弹框要求输入用户名和密码，用户名输入 <code>root</code>，密码输入你刚才记录的密码。</li>
-<li>连接成功建立后，会在 Xshell 上显示:<blockquote>
-<p>Connection established.<br>[root@localhost ~]#  </p>
+<li><p>连接成功建立后，会在 Xshell 上显示:</p>
+<blockquote>
+<p>Connection established.<br>  [root@localhost ~]#  </p>
 </blockquote>
 </li>
 </ul>
@@ -202,14 +203,18 @@ $ hexo g    //生成静态文件
 <li>安装 Sudo：<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># yum install sudo</span>
 </code></pre>
 </li>
-<li>赋予 hexo 用户 root 权限，以便接下来的操作:<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
+<li><p>赋予 hexo 用户 root 权限，以便接下来的操作:</p>
+<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
 </code></pre>
-找到这一行并添加:<pre class=" language-text"><code class="language-text"> root        ALL=(ALL)       ALL
+<p>找到这一行并添加:</p>
+<pre class=" language-text"><code class="language-text"> root        ALL=(ALL)       ALL
  hexo        ALL=(ALL)       ALL     //这个是添加的
 </code></pre>
 <blockquote>
-<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
-</blockquote>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br> 「i」进入插入模式<br> 「ESC」退出插入模式  </p>
+<pre><code> `:wq!` 保存并退出  
+ `:q!` 不保存并退出  
+</code></pre></blockquote>
 </li>
 </ol>
 <p><strong>注意：服务器端代码如果是 # 开头代表 root 用户的命令， $ 开头代表 hexo 用户的命令。</strong></p>
@@ -294,67 +299,70 @@ $ hexo g    //生成静态文件
 <li><p>验证配置是否正确：</p>
 <pre class=" language-bash"><code class="language-bash"> $ <span class="token function">sudo</span> nginx -t
 </code></pre>
-<p>如果显示 <code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</code> 和 <code>nginx: configuration file /etc/nginx/nginx.conf test is successful</code>，说明配置正确。  </p>
+<p>如果显示如下信息，说明配置正确。  </p>
 <blockquote>
-<p>nizaiganma<br> 你好</p>
+<p>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok<br> nginx: configuration file /etc/nginx/nginx.conf test is successful</p>
 </blockquote>
 </li>
 <li>启动 nginx 服务并测试：<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">sudo</span> <span class="token function">service</span> nginx start
  $ <span class="token keyword">echo</span> <span class="token string">"hello nginx!"</span> <span class="token operator">></span> /home/hexo/www/index.html   //站点根目录下新建 index.html
 </code></pre>
-在浏览器中输入你的域名或者 VPS 的 IP 地址（取决于域名解析是否已经生效），出现 <code>hello nginx!</code> 字样表示 nginx 代理服务器搭建成功。然后删除 <code>index.html</code> 吧。  <pre class=" language-bash"><code class="language-bash">$ <span class="token function">rm</span> /home/hexo/www/index.html
+在浏览器中输入你的域名或者 VPS 的 IP 地址（取决于域名解析是否已经生效），出现 <code>hello nginx!</code> 字样表示 nginx 代理服务器搭建成功。然后删除 <code>index.html</code> 吧。  <pre class=" language-bash"><code class="language-bash"> $ <span class="token function">rm</span> /home/hexo/www/index.html
 </code></pre>
 </li>
 </ol>
 <h4 id="3-3-4-安装和配置-Git"><a href="#3-3-4-安装和配置-Git" class="headerlink" title="3.3.4 安装和配置 Git"></a>3.3.4 安装和配置 Git</h4><ol>
-<li>安装 Git<pre class=" language-bash"><code class="language-bash">$ <span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span>
+<li>安装 Git<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">sudo</span> yum <span class="token function">install</span> <span class="token function">git</span>
 </code></pre>
 </li>
-<li>初始化 Git 仓库<br>用户主目录下新建 <code>hexo.git</code> 文件夹用作 Git 仓库并初始化：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> ~
-$ <span class="token function">mkdir</span> hexo.git
-$ <span class="token function">cd</span> hexo.git
-$ <span class="token function">git</span> init --bare   //初始化 Git 仓库
+<li>初始化 Git 仓库<br>用户主目录下新建 <code>hexo.git</code> 文件夹用作 Git 仓库并初始化：<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">cd</span> ~
+ $ <span class="token function">mkdir</span> hexo.git
+ $ <span class="token function">cd</span> hexo.git
+ $ <span class="token function">git</span> init --bare   //初始化 Git 仓库
 </code></pre>
 </li>
-<li>配置 Git 仓库的 hooks<br>hooks 可以将不同目录的数据实现同步。具体如下，在 Git 仓库 <code>hooks</code> 目录下创建文件 <code>post-receive</code> 并修改权限：<pre class=" language-bash"><code class="language-bash">$ <span class="token function">cd</span> hooks
-$ <span class="token function">touch</span> post-receive
-$ <span class="token function">chmod</span> 755 post-receive
-$ <span class="token function">vi</span> post-receive
+<li>配置 Git 仓库的 hooks<br>hooks 可以将不同目录的数据实现同步。具体如下，在 Git 仓库 <code>hooks</code> 目录下创建文件 <code>post-receive</code> 并修改权限：<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">cd</span> hooks
+ $ <span class="token function">touch</span> post-receive
+ $ <span class="token function">chmod</span> 755 post-receive
+ $ <span class="token function">vi</span> post-receive
 </code></pre>
-将以下内容添加到 <code>post-receive</code> 中：<pre class=" language-text"><code class="language-text">#!/bin/bash
-GIT_REPO=/home/hexo/hexo.git
-TMP_GIT_CLONE=/tmp/HexoBlog
-PUBLIC_WWW=/home/hexo/www
-rm -rf ${TMP_GIT_CLONE}
-git clone $GIT_REPO $TMP_GIT_CLONE
-rm -rf ${PUBLIC_WWW}/*
-cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}
+将以下内容添加到 <code>post-receive</code> 中：<pre class=" language-text"><code class="language-text"> #!/bin/bash
+ GIT_REPO=/home/hexo/hexo.git
+ TMP_GIT_CLONE=/tmp/HexoBlog
+ PUBLIC_WWW=/home/hexo/www
+ rm -rf ${TMP_GIT_CLONE}
+ git clone $GIT_REPO $TMP_GIT_CLONE
+ rm -rf ${PUBLIC_WWW}/*
+ cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}
 </code></pre>
 </li>
 </ol>
 <h3 id="3-4-本地端部署验证"><a href="#3-4-本地端部署验证" class="headerlink" title="3.4 本地端部署验证"></a>3.4 本地端部署验证</h3><p>由于前述步骤中本地端已经安装好了 Hexo，所以只需要修改 <code>_config.yml</code> 文件，即可进行部署到 VPS 。<br>url 项配置：</p>
-<pre class=" language-text"><code class="language-text"># URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+<pre><code>```yaml
+# URL
+## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
 url: http://foversty.com    #你的博客网址
 root: /
-</code></pre>
-<p>deployment 项配置：</p>
-<pre class=" language-text"><code class="language-text"># Deployment
+```
+</code></pre><p>deployment 项配置：</p>
+<pre><code>```yaml
+# Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
- - type: git  
-   repository: git@github.com:xxx/xxx.github.io.git  
-   branch: master   //之前配置的部署到 Github 的有关信息  
- - type: git  
-   repo: ssh://hexo@你的VPS的IP地址:端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  
-   branch: master
-</code></pre>
-<p>这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：</p>
-<pre class=" language-bash"><code class="language-bash">$ hexo clean
+- type: git  
+  repository: git@github.com:xxx/xxx.github.io.git  
+  branch: master   //之前配置的部署到 Github 的有关信息  
+- type: git  
+  repo: ssh://hexo@你的VPS的IP地址:端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  
+  branch: master
+```
+</code></pre><p>这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：</p>
+<pre><code>```bash
+$ hexo clean
 $ hexo g
 $ hexo d
-</code></pre>
-<p>至此，配置过程完全结束，你可以打开浏览器，输入你的域名，查看你发布的内容。  </p>
+```
+</code></pre><p>至此，配置过程完全结束，你可以打开浏览器，输入你的域名，查看你发布的内容。  </p>
 <h5 id="完结撒花！"><a href="#完结撒花！" class="headerlink" title="完结撒花！"></a>完结撒花！</h5>
             </div>
 
