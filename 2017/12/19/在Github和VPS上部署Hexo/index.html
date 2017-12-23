@@ -205,16 +205,10 @@ $ hexo g    //生成静态文件
 <li>赋予 hexo 用户 root 权限，以便接下来的操作:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
 </code></pre>
 <blockquote>
-<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，建议自行搜索:</p>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br><code>:wq!</code> 保存并退出<br><code>:q!</code> 不保存并退出  </p>
 </blockquote>
 </li>
 </ol>
-<ul>
-<li>「i」进入插入模式</li>
-<li>「ESC」退出插入模式</li>
-<li><code>:wq!</code> 保存并退出</li>
-<li><code>:q!</code> 不保存并退出  </li>
-</ul>
 <p>找到这一行并添加:</p>
 <pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
 hexo        ALL=(ALL)       ALL     //这个是添加的
