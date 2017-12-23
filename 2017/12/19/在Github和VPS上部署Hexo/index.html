@@ -191,47 +191,47 @@ $ hexo g    //生成静态文件
 <li>连接过程中 Xshell 会弹框要求输入用户名和密码，用户名输入 <code>root</code>，密码输入你刚才记录的密码。</li>
 <li><p>连接成功建立后，会在 Xshell 上显示:</p>
 <blockquote>
-<p>Connection established.<br>  [root@localhost ~]#  </p>
+<p>Connection established.<br>[root@localhost ~]#  </p>
 </blockquote>
 </li>
 </ul>
 <h3 id="3-3-VPS-端的配置"><a href="#3-3-VPS-端的配置" class="headerlink" title="3.3 VPS 端的配置"></a>3.3 VPS 端的配置</h3><h4 id="3-3-1-创建用户"><a href="#3-3-1-创建用户" class="headerlink" title="3.3.1 创建用户"></a>3.3.1 创建用户</h4><ol>
-<li>创建用户用于服务器端站点管理，如下：<pre class=" language-shell"><code class="language-shell"> # adduser hexo  //创建用户
- # passwd hexo   //设置密码，可能看不见输入的字符，正常输入即可
+<li>创建用户用于服务器端站点管理，如下：<pre class=" language-shell"><code class="language-shell"># adduser hexo  //创建用户
+# passwd hexo   //设置密码，可能看不见输入的字符，正常输入即可
 </code></pre>
 </li>
-<li>安装 Sudo：<pre class=" language-shell"><code class="language-shell"> # yum install sudo
+<li>安装 Sudo：<pre class=" language-shell"><code class="language-shell"># yum install sudo
 </code></pre>
 </li>
 <li><p>赋予 hexo 用户 root 权限，以便接下来的操作:</p>
-<pre class=" language-shell"><code class="language-shell"> # vi /etc/sudoers
+<pre class=" language-shell"><code class="language-shell"># vi /etc/sudoers
 </code></pre>
 <p>找到这一行并添加:</p>
-<pre class=" language-text"><code class="language-text"> root        ALL=(ALL)       ALL
- hexo        ALL=(ALL)       ALL     //这个是添加的
+<pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
+hexo        ALL=(ALL)       ALL     //这个是添加的
 </code></pre>
 <blockquote>
-<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br> 「i」进入插入模式<br> 「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br><code>:wq!</code> 保存并退出<br><code>:q!</code> 不保存并退出  </p>
 </blockquote>
 </li>
 </ol>
 <p><strong>注意：服务器端代码如果是 # 开头代表 root 用户的命令， $ 开头代表 hexo 用户的命令。</strong></p>
 <h4 id="3-3-2-配置本地端无密码-SSH-登录服务器端"><a href="#3-3-2-配置本地端无密码-SSH-登录服务器端" class="headerlink" title="3.3.2 配置本地端无密码 SSH 登录服务器端"></a>3.3.2 配置本地端无密码 SSH 登录服务器端</h4><p>在前述步骤中我们已经在本地生成了 SSH 密钥，这里可以直接拿来使用而无需再次生成。  </p>
 <ol>
-<li>服务器端查看是否有安装 SSH ：<pre class=" language-shell"><code class="language-shell"> # rpm -qa |grep ssh
+<li>服务器端查看是否有安装 SSH ：<pre class=" language-shell"><code class="language-shell"># rpm -qa |grep ssh
 </code></pre>
-如果返回有 <code>openssh</code> 开头的信息，则代表已安装。<br>没有的话使用 yum 安装：  <pre class=" language-shell"><code class="language-shell"> # yum install ssh
-</code></pre>
-</li>
-<li>启动服务:<pre class=" language-shell"><code class="language-shell"> # service sshd start
- # service sshd status
+如果返回有 <code>openssh</code> 开头的信息，则代表已安装。<br>没有的话使用 yum 安装：  <pre class=" language-shell"><code class="language-shell"># yum install ssh
 </code></pre>
 </li>
-<li>服务器端在用户主目录下新建 <code>.ssh</code> 文件夹并拷贝本地端公钥内容到 <code>.ssh</code> 目录下的 <code>authorized_keys</code>:<pre class=" language-shell"><code class="language-shell"> # su hexo
- $ cd ~
- $ mkdir .ssh
- $ cd .ssh
- $ echo "本地端 SSH 密钥(全部内容)" > authorized_keys  //密钥在 C:\Users\你的用户名\.ssh\id_rsa.pub 中
+<li>启动服务:<pre class=" language-shell"><code class="language-shell"># service sshd start
+# service sshd status
+</code></pre>
+</li>
+<li>服务器端在用户主目录下新建 <code>.ssh</code> 文件夹并拷贝本地端公钥内容到 <code>.ssh</code> 目录下的 <code>authorized_keys</code>:<pre class=" language-shell"><code class="language-shell"># su hexo
+$ cd ~
+$ mkdir .ssh
+$ cd .ssh
+$ echo "本地端 SSH 密钥(全部内容)" > authorized_keys  //密钥在 C:\Users\你的用户名\.ssh\id_rsa.pub 中
 </code></pre>
 修改权限：<pre class=" language-shell"><code class="language-shell">$ chmod 700 ~/.ssh
 $ chmod 600 ~/.ssh/authorized_keys
