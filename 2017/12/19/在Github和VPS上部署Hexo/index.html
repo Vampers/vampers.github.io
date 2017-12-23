@@ -195,19 +195,17 @@ $ hexo g    //生成静态文件
 </li>
 </ul>
 <h3 id="3-3-VPS-端的配置"><a href="#3-3-VPS-端的配置" class="headerlink" title="3.3 VPS 端的配置"></a>3.3 VPS 端的配置</h3><h4 id="3-3-1-创建用户"><a href="#3-3-1-创建用户" class="headerlink" title="3.3.1 创建用户"></a>3.3.1 创建用户</h4><ol>
-<li>创建用户用于服务器端站点管理，如下：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># adduser hexo  //创建用户</span>
-<span class="token comment" spellcheck="true"># passwd hexo   //设置密码，可能看不见输入的字符，正常输入即可</span>
+<li>创建用户用于服务器端站点管理，如下：<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># adduser hexo  //创建用户</span>
+ <span class="token comment" spellcheck="true"># passwd hexo   //设置密码，可能看不见输入的字符，正常输入即可</span>
 </code></pre>
 </li>
-<li>安装 Sudo：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># yum install sudo</span>
+<li>安装 Sudo：<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># yum install sudo</span>
 </code></pre>
 </li>
-<li>赋予 hexo 用户 root 权限，以便接下来的操作:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
+<li>赋予 hexo 用户 root 权限，以便接下来的操作:<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
 </code></pre>
-找到这一行并添加:<pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
-hexo        ALL=(ALL)       ALL     //这个是添加的
-</code></pre>
-<blockquote>
+找到这一行并添加:<pre><code> ```text
+</code></pre>root        ALL=(ALL)       ALL<br>hexo        ALL=(ALL)       ALL     //这个是添加的<br>```<blockquote>
 <p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
 </blockquote>
 </li>
@@ -272,20 +270,8 @@ enabled=1
 需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。  </li>
 <li>修改 nginx 配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
 </code></pre>
-将其中 user 的值改为 <code>hexo</code>。并在 <code>http</code> 段落中添加以下内容以开启 GZIP 压缩，加快网站访问速度。  <pre class=" language-text"><code class="language-text"># 开启gzip
-gzip on;
-# 启用gzip压缩的最小文件，小于设置值的文件将不会压缩
-gzip_min_length 1k;
-# gzip 压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明
-gzip_comp_level 2;
-# 进行压缩的文件类型。javascript有多种形式。其中的值可以在 mime.types 文件中找到。
-gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
-# 是否在http header中添加Vary: Accept-Encoding，建议开启
-gzip_vary on;
-# 禁用IE 6 gzip
-gzip_disable "MSIE [1-6]\.";
-</code></pre>
-</li>
+将其中 user 的值改为 <code>hexo</code>。并在 <code>http</code> 段落中添加以下内容以开启 GZIP 压缩，加快网站访问速度。  <pre><code> ```text
+</code></pre><h1 id="开启gzip"><a href="#开启gzip" class="headerlink" title="开启gzip"></a>开启gzip</h1>gzip on;<h1 id="启用gzip压缩的最小文件，小于设置值的文件将不会压缩"><a href="#启用gzip压缩的最小文件，小于设置值的文件将不会压缩" class="headerlink" title="启用gzip压缩的最小文件，小于设置值的文件将不会压缩"></a>启用gzip压缩的最小文件，小于设置值的文件将不会压缩</h1>gzip_min_length 1k;<h1 id="gzip-压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明"><a href="#gzip-压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明" class="headerlink" title="gzip 压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明"></a>gzip 压缩级别，1-10，数字越大压缩的越好，也越占用CPU时间，后面会有详细说明</h1>gzip_comp_level 2;<h1 id="进行压缩的文件类型。javascript有多种形式。其中的值可以在-mime-types-文件中找到。"><a href="#进行压缩的文件类型。javascript有多种形式。其中的值可以在-mime-types-文件中找到。" class="headerlink" title="进行压缩的文件类型。javascript有多种形式。其中的值可以在 mime.types 文件中找到。"></a>进行压缩的文件类型。javascript有多种形式。其中的值可以在 mime.types 文件中找到。</h1>gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;<h1 id="是否在http-header中添加Vary-Accept-Encoding，建议开启"><a href="#是否在http-header中添加Vary-Accept-Encoding，建议开启" class="headerlink" title="是否在http header中添加Vary: Accept-Encoding，建议开启"></a>是否在http header中添加Vary: Accept-Encoding，建议开启</h1>gzip_vary on;<h1 id="禁用IE-6-gzip"><a href="#禁用IE-6-gzip" class="headerlink" title="禁用IE 6 gzip"></a>禁用IE 6 gzip</h1>gzip_disable “MSIE [1-6].“;<br>```</li>
 <li>切换到 hexo 用户，用户主目录下新建 <code>www</code> 文件夹作为网站根目录：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
 $ <span class="token function">cd</span> ~
 $ <span class="token function">mkdir</span> www
