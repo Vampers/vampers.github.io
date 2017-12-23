@@ -204,15 +204,14 @@ $ hexo g    //生成静态文件
 </li>
 <li>赋予 hexo 用户 root 权限，以便接下来的操作:<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/sudoers</span>
 </code></pre>
+找到这一行并添加:<pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
+hexo        ALL=(ALL)       ALL     //这个是添加的
+</code></pre>
 <blockquote>
-<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br><code>:wq!</code> 保存并退出<br><code>:q!</code> 不保存并退出  </p>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，建议自行搜索：<br>「i」进入插入模式<br>「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
 </blockquote>
 </li>
 </ol>
-<p>找到这一行并添加:</p>
-<pre class=" language-text"><code class="language-text">root        ALL=(ALL)       ALL
-hexo        ALL=(ALL)       ALL     //这个是添加的
-</code></pre>
 <p><strong>注意：服务器端代码如果是 # 开头代表 root 用户的命令， $ 开头代表 hexo 用户的命令。</strong></p>
 <h4 id="3-3-2-配置本地端无密码-SSH-登录服务器端"><a href="#3-3-2-配置本地端无密码-SSH-登录服务器端" class="headerlink" title="3.3.2 配置本地端无密码 SSH 登录服务器端"></a>3.3.2 配置本地端无密码 SSH 登录服务器端</h4><p>在前述步骤中我们已经在本地生成了 SSH 密钥，这里可以直接拿来使用而无需再次生成。  </p>
 <ol>
