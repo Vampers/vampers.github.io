@@ -211,10 +211,8 @@ $ hexo g    //生成静态文件
  hexo        ALL=(ALL)       ALL     //这个是添加的
 </code></pre>
 <blockquote>
-<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br> 「i」进入插入模式<br> 「ESC」退出插入模式  </p>
-<pre><code> `:wq!` 保存并退出  
- `:q!` 不保存并退出  
-</code></pre></blockquote>
+<p>编辑这个文件需要用到一些 Vim 命令和键位，这里只介绍要用到的部分，其他详情建议自行搜索：<br> 「i」进入插入模式<br> 「ESC」退出插入模式<br> <code>:wq!</code> 保存并退出<br> <code>:q!</code> 不保存并退出  </p>
+</blockquote>
 </li>
 </ol>
 <p><strong>注意：服务器端代码如果是 # 开头代表 root 用户的命令， $ 开头代表 hexo 用户的命令。</strong></p>
@@ -222,7 +220,7 @@ $ hexo g    //生成静态文件
 <ol>
 <li>服务器端查看是否有安装 SSH ：<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># rpm -qa |grep ssh</span>
 </code></pre>
-如果返回有 <code>openssh</code> 开头的信息，则代表已安装。<br>没有的话使用 yum 安装：<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># yum install ssh</span>
+如果返回有 <code>openssh</code> 开头的信息，则代表已安装。<br>没有的话使用 yum 安装：  <pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># yum install ssh</span>
 </code></pre>
 </li>
 <li>启动服务:<pre class=" language-bash"><code class="language-bash"> <span class="token comment" spellcheck="true"># service sshd start</span>
