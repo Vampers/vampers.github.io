@@ -176,7 +176,27 @@ $ hexo g  //生成静态文件
 <li><em><a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="noopener">Commands | Hexo</a></em>  </li>
 </ul>
 <p><em>关于 Markdown 编辑器，个人推荐 VS Code 或者 Atom，用起来赏心悦目，本文即是由 VS Code 撰写的。</em>  </p>
-<h2 id="3-VPS-上的搭建过程"><a href="#3-VPS-上的搭建过程" class="headerlink" title="3. VPS 上的搭建过程"></a>3. VPS 上的搭建过程</h2><h3 id="3-1-温馨提示"><a href="#3-1-温馨提示" class="headerlink" title="3.1 温馨提示"></a>3.1 温馨提示</h3><p>test237</p>
+<h2 id="3-VPS-上的搭建过程"><a href="#3-VPS-上的搭建过程" class="headerlink" title="3. VPS 上的搭建过程"></a>3. VPS 上的搭建过程</h2><p><strong>在进行这一部分之前，建议先完成本文前述的所有步骤，并确保正确无误。</strong></p>
+<h3 id="3-1-域名解析"><a href="#3-1-域名解析" class="headerlink" title="3.1 域名解析"></a>3.1 域名解析</h3><ul>
+<li>如果你还没有域名，那么你将需要购买一个，可以前往 <a href="https://sg.godaddy.com/zh/" target="_blank" rel="noopener">GoDaddy</a> 或其他域名销售网站购买。</li>
+<li>然后前往 <a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a>，选择 <code>域名解析</code>，填入你的域名，可以看到应该有 4 条记录类型，两条 <code>NS</code> 类型，一条 <code>A</code> 类型，一条 <code>CNAME</code> 类型。其中两条 <code>NS</code> 的记录类型是 DNSPod 默认配置的，无法修改，你需要在 <code>A</code> 记录类型中将记录值改为你的 VPS 的 IP 地址。</li>
+<li>前往你的域名购买网站，将域名的 DNS 解析服务器设置为 <code>f1g1ns1.dnspod.net</code>，<code>f1g1ns2.dnspod.net</code>。注意填写为两栏，一栏填写一个。</li>
+<li>点击保存，等待全球递归DNS服务器刷新（最多72小时）。</li>
+<li>在等待生效过程中，你正好可以开始配置你的 VPS 。  </li>
+</ul>
+<h3 id="3-2-VPS-配置"><a href="#3-2-VPS-配置" class="headerlink" title="3.2 VPS 配置"></a>3.2 VPS 配置</h3><p>首先，在本地端安装 SSH 工具，这类工具有很多，使用方法也大同小异。本文将以 <a href="http://www.netsarang.com/xshell_download.html" target="_blank" rel="noopener">Xshell</a> 为例进行操作。  </p>
+<h4 id="3-2-1-建立本地端和-VPS-服务器端的-SSH-连接"><a href="#3-2-1-建立本地端和-VPS-服务器端的-SSH-连接" class="headerlink" title="3.2.1 建立本地端和 VPS 服务器端的 SSH 连接"></a>3.2.1 建立本地端和 VPS 服务器端的 SSH 连接</h4><ul>
+<li>在网页上登录你的 VPS 控制台，记录下 IP 地址，SSH 连接端口号，以及 root 用户的密码。</li>
+<li>打开 Xshell，选择 <code>新建连接</code>，在 <code>Host</code> 一栏中填写 VPS 的 IP 地址，在 <code>Port Number</code> 一栏中填写 VPS 的 SSH 连接端口号，填好保存，建立连接。</li>
+<li>连接过程中 Xshell 会弹框要求输入用户名和密码，用户名输入 <code>root</code>，密码输入你刚才记录的密码。</li>
+<li><p>连接成功建立后，会在 Xshell 上显示:</p>
+<blockquote>
+<p>Connection established.<br>[root@localhost ~]#  </p>
+</blockquote>
+</li>
+<li><p>test2</p>
+</li>
+</ul>
 
             </div>
 
