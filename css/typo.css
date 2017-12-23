@@ -355,10 +355,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Customized by yy */
-p {
+.typo {
   text-shadow: 0.012em 0.012em 0.012em #999999;
 }
 
-p code {
+.typo code {
   text-shadow: none;
 }
