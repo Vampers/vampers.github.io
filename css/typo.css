@@ -171,7 +171,7 @@ mark {
 }
 
 /* 代码片断 */
-pre, code, pre tt {
+/*pre, code, pre tt {
   font-family: Courier, 'Courier New', monospace;
 }
 
@@ -181,7 +181,7 @@ pre {
   padding: 1em 1.5em;
   display: block;
   -webkit-overflow-scrolling: touch;
-}
+}*/
 
 /* 一致化 horizontal rule */
 hr {
