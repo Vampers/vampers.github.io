@@ -291,16 +291,15 @@ $ hexo g    //生成静态文件
  $ <span class="token function">mkdir</span> www
 </code></pre>
 </li>
-<li>验证配置是否正确：<pre><code> ```bash
- $ sudo nginx -t
- ```
-</code></pre>如果显示 <code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</code> 和 <code>nginx: configuration file /etc/nginx/nginx.conf test is successful</code>，说明配置正确。  <blockquote>
+<li>验证配置是否正确：<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">sudo</span> nginx -t
+</code></pre>
+如果显示 <code>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</code> 和 <code>nginx: configuration file /etc/nginx/nginx.conf test is successful</code>，说明配置正确。  <blockquote>
 <p>nizaiganma  </p>
 </blockquote>
 </li>
 </ol>
 <ol>
-<li>启动 nginx 服务并测试<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">sudo</span> <span class="token function">service</span> nginx start
+<li>启动 nginx 服务并测试：<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">sudo</span> <span class="token function">service</span> nginx start
  $ <span class="token keyword">echo</span> <span class="token string">"hello nginx!"</span> <span class="token operator">></span> /home/hexo/www/index.html   //站点根目录下新建 index.html
 </code></pre>
 在浏览器中输入你的域名或者 VPS 的 IP 地址（取决于域名解析是否已经生效），出现 <code>hello nginx!</code> 字样表示 nginx 代理服务器搭建成功。然后删除 <code>index.html</code> 吧。  <pre class=" language-bash"><code class="language-bash">$ <span class="token function">rm</span> /home/hexo/www/index.html
