@@ -233,8 +233,8 @@ $ hexo g    //生成静态文件
  $ cd .ssh
  $ echo "本地端 SSH 密钥(全部内容)" > authorized_keys  //密钥在 C:\Users\你的用户名\.ssh\id_rsa.pub 中
 </code></pre>
-修改权限：<pre class=" language-shell"><code class="language-shell"> $ chmod 700 ~/.ssh
- $ chmod 600 ~/.ssh/authorized_keys
+修改权限：<pre class=" language-shell"><code class="language-shell">$ chmod 700 ~/.ssh
+$ chmod 600 ~/.ssh/authorized_keys
 </code></pre>
 </li>
 <li>进行验证：<br>打开 Git Bash，执行：<pre class=" language-bash"><code class="language-bash"> $ <span class="token function">ssh</span> hexo@你的VPS的IP地址 -p 端口号 //@前是你创建的站点管理用户，本文中是 hexo
