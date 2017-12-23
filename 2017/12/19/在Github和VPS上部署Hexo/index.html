@@ -260,15 +260,19 @@ enabled=1
 </li>
 <li>重新配置：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/conf.d/hexo.conf</span>
 </code></pre>
-添加以下内容：<br>```text</li>
-</ol>
-<p>server {<br>  root /home/hexo/www;  #网站根目录,用来存储网站文件，后面会创建<br>  index index.html index.htm;<br>  server_name foversty.com;   #你的域名<br>  location / {<br>    try_files $uri $uri/ /index.html;<br>  }<br>}</p>
-<pre><code>需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 `index.html`。  
-5. 修改 nginx 配置文件：
-```bash
-# vi /etc/nginx/nginx.conf
-</code></pre><p>将其中 user 的值改为 <code>hexo</code>。并在 <code>http</code> 段落中添加以下内容以开启 GZIP 压缩，加快网站访问速度。  </p>
-<pre class=" language-text"><code class="language-text"># 开启gzip
+添加以下内容：<pre class=" language-text"><code class="language-text"> server {
+   root /home/hexo/www;  #网站根目录,用来存储网站文件，后面会创建
+   index index.html index.htm;
+   server_name foversty.com;   #你的域名
+   location / {
+     try_files $uri $uri/ /index.html;
+   }
+ }
+</code></pre>
+需要注意，这一步较为关键，因为将你的域名和服务器下的网站根目录挂钩，主页是根目录下的 <code>index.html</code>。  </li>
+<li>修改 nginx 配置文件：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># vi /etc/nginx/nginx.conf</span>
+</code></pre>
+将其中 user 的值改为 <code>hexo</code>。并在 <code>http</code> 段落中添加以下内容以开启 GZIP 压缩，加快网站访问速度。  <pre class=" language-text"><code class="language-text"># 开启gzip
 gzip on;
 # 启用gzip压缩的最小文件，小于设置值的文件将不会压缩
 gzip_min_length 1k;
@@ -281,7 +285,7 @@ gzip_vary on;
 # 禁用IE 6 gzip
 gzip_disable "MSIE [1-6]\.";
 </code></pre>
-<ol>
+</li>
 <li>切换到 hexo 用户，用户主目录下新建 <code>www</code> 文件夹作为网站根目录：<pre class=" language-bash"><code class="language-bash"><span class="token comment" spellcheck="true"># su hexo</span>
 $ <span class="token function">cd</span> ~
 $ <span class="token function">mkdir</span> www
