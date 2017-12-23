@@ -157,10 +157,10 @@ $ hexo init
 <li><a href="https://hexo.io/zh-cn/docs/writing.html" target="_blank" rel="noopener">Writing | Hexo</a>  </li>
 </ul>
 <h4 id="2-5-5-上传到-Github"><a href="#2-5-5-上传到-Github" class="headerlink" title="2.5.5 上传到 Github"></a>2.5.5 上传到 Github</h4><p>首先，SSH key 肯定要配置好。<br>其次，配置 <code>_config.yml</code> 中有关 deploy 的部分:  </p>
-<pre class=" language-text"><code class="language-text">deploy:
- type: git
- repository: git@github.com:xxx/xxx.github.io.git   //注意冒号和 xxx 之间没有空格
- branch: master
+<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+ <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+ <span class="token key atrule">repository</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>xxx/xxx.github.io.git   //注意冒号和 xxx 之间没有空格
+ <span class="token key atrule">branch</span><span class="token punctuation">:</span> master
 </code></pre>
 <p>执行：  </p>
 <pre class=" language-bash"><code class="language-bash">$ hexo clean    //非必须。清除缓存文件 <span class="token punctuation">(</span>db.json<span class="token punctuation">)</span> 和已生成的静态文件 <span class="token punctuation">(</span>public<span class="token punctuation">)</span>。在某些情况（尤其是更换主题后），如果发现对站点的更改无论如何也不生效，需要运行该命令。
