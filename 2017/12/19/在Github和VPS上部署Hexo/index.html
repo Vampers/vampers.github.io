@@ -348,9 +348,9 @@ cp -rf ${TMP_GIT_CLONE}/* ${PUBLIC_WWW}
 <span class="token key atrule">deploy</span><span class="token punctuation">:</span>
  <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git  
    <span class="token key atrule">repository</span><span class="token punctuation">:</span> git@github.com<span class="token punctuation">:</span>xxx/xxx.github.io.git  
-   <span class="token key atrule">branch</span><span class="token punctuation">:</span> master   //之前配置的部署到 Github 的有关信息  
+   <span class="token key atrule">branch</span><span class="token punctuation">:</span> master   <span class="token comment" spellcheck="true">#之前配置的部署到 Github 的有关信息  </span>
  <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git  
-   <span class="token key atrule">repo</span><span class="token punctuation">:</span> ssh<span class="token punctuation">:</span>//hexo@你的VPS的IP地址<span class="token punctuation">:</span>端口号/home/hexo/hexo.git   //新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  
+   <span class="token key atrule">repo</span><span class="token punctuation">:</span> ssh<span class="token punctuation">:</span>//hexo@你的VPS的IP地址<span class="token punctuation">:</span>端口号/home/hexo/hexo.git   <span class="token comment" spellcheck="true">#新增部署到VPS的有关信息，注意冒号不可省去且冒号前后没有空格  </span>
    <span class="token key atrule">branch</span><span class="token punctuation">:</span> master
 </code></pre>
 <p>这样设置好以后，使用 <code>hexo d</code> 命令可以同时部署到 Github 和 VPS，如果你只想部署到其中一个，那么将另一个删掉或者注释掉即可。<br>部署验证，打开 Git Bash，执行以下命令：</p>
