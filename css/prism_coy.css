@@ -9,7 +9,7 @@ code[class*="language-"],
 pre[class*="language-"] {
 	color: black;
 	background: none;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace, 'Noto Sans SC Sliced';
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', 'Noto Sans SC Sliced', monospace;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
