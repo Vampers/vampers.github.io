@@ -157,9 +157,7 @@
 </code></pre>
 <p>当看到以下内容时：</p>
 <blockquote>
-<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log<br>&nbsp;  </p>
-<h2 id="How-would-you-like-to-authenticate-with-the-ACME-CA"><a href="#How-would-you-like-to-authenticate-with-the-ACME-CA" class="headerlink" title="How would you like to authenticate with the ACME CA?  "></a>How would you like to authenticate with the ACME CA?  </h2><p>1: Spin up a temporary webserver (standalone)</p>
-<h2 id="2-Place-files-in-webroot-directory-webroot"><a href="#2-Place-files-in-webroot-directory-webroot" class="headerlink" title="2: Place files in webroot directory (webroot)  "></a>2: Place files in webroot directory (webroot)  </h2><p>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):<br>运行时如果遇到报错信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
+<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log<br>&nbsp;<br>How would you like to authenticate with the ACME CA?<br>&nbsp;<br>1: Spin up a temporary webserver (standalone)<br>2: Place files in webroot directory (webroot)<br>&nbsp;<br>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):<br>运行时如果遇到报错信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> /etc/init.d/apache2 stop
 <span class="token function">service</span> lighttpd stop
 </code></pre>
