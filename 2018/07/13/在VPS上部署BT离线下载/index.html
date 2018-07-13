@@ -205,13 +205,13 @@ server<span class="token punctuation">.</span>groupname            <span class="
 server<span class="token punctuation">.</span>dir<span class="token operator">-</span>listing <span class="token operator">=</span> <span class="token string">"enable"</span>
 $SERVER<span class="token punctuation">[</span><span class="token string">"socket"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"0.0.0.0:443"</span> <span class="token punctuation">{</span>
         ssl<span class="token punctuation">.</span>engine <span class="token operator">=</span> <span class="token string">"enable"</span>
-        ssl<span class="token punctuation">.</span>pemfile <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/example.com/ssl.pem"</span>
+        ssl<span class="token punctuation">.</span>pemfile <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/example.com/merged.pem"</span>
         ssl<span class="token punctuation">.</span>ca<span class="token operator">-</span>file <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/example.com/fullchain.pem"</span>
         server<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"example.com"</span>
          <span class="token punctuation">}</span>
 $SERVER<span class="token punctuation">[</span><span class="token string">"socket"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"[::]:443"</span> <span class="token punctuation">{</span>
         ssl<span class="token punctuation">.</span>engine <span class="token operator">=</span> <span class="token string">"enable"</span>
-        ssl<span class="token punctuation">.</span>pemfile <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/example.com/ssl.pem"</span>
+        ssl<span class="token punctuation">.</span>pemfile <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/example.com/merged.pem"</span>
         ssl<span class="token punctuation">.</span>ca<span class="token operator">-</span>file <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/example.com/fullchain.pem"</span>
         server<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"example.com"</span>
          <span class="token punctuation">}</span>
