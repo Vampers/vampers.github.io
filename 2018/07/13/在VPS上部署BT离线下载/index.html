@@ -112,25 +112,20 @@
 <li>Adult material</li>
 <li>Video streaming</li>
 <li>Torrents (Only allowed in US locations - must be limited to 20Mbps total)</li>
-<li>Usenet (Must be limited to 20Mbps total)  </li>
+<li>Usenet (Must be limited to 20Mbps total)<br><br><br><sup>*</sup>Any usage which results in any attacks against RamNode the company (not just the client’s server) may result in suspension and/or termination.<br><sup>+</sup>Game servers are not allowed on Massive plans (CVZ and CKVM).  </li>
 </ul>
 </blockquote>
-<p>  <sup>*</sup>Any usage which results in any attacks against RamNode the company (not just the client’s server) may result in suspension and/or termination.<br>  <sup>+</sup>Game servers are not allowed on Massive plans (CVZ and CKVM).  </p>
 <h2 id="3-建立本地端和-VPS-端的-SSH-连接"><a href="#3-建立本地端和-VPS-端的-SSH-连接" class="headerlink" title="3 建立本地端和 VPS 端的 SSH 连接"></a>3 建立本地端和 VPS 端的 SSH 连接</h2><p>首先，在本地端安装 SSH 工具，这类工具有很多，使用方法也大同小异。本文将以 <a href="http://www.netsarang.com/xshell_download.html" target="_blank" rel="noopener">Xshell</a> 为例进行操作。<br>在网页上登录你的 VPS 控制台，记录下 IP 地址，SSH 连接端口号，以及 root 用户的密码。如果是 RamNode 的 VPS ，那么有关 SSH 连接的信息会以邮件形式发送给用户。</p>
 <ul>
 <li>打开 Xshell，选择 <code>新建连接</code>，在 <code>Host</code> 一栏中填写 VPS 的 IP 地址，在 <code>Port Number</code> 一栏中填写 VPS 的 SSH 连接端口号，填好保存，建立连接。</li>
 <li>连接过程中 Xshell 会弹框要求输入用户名和密码，用户名输入 <code>root</code>，密码输入你刚才记录的密码。</li>
 <li><p>连接成功建立后，会在 Xshell 上显示:</p>
 <blockquote>
-<p>Connection established.<br>To escape to local shell, press ‘Ctrl+Alt+]’.  </p>
-</blockquote>
-<p>Welcome to Ubuntu 16.04 LTS (GNU/Linux 2.6.32-042stab127.2 x86_64)  </p>
+<p>Connection established.<br>To escape to local shell, press ‘Ctrl+Alt+]’.<br><br><br>Welcome to Ubuntu 16.04 LTS (GNU/Linux 2.6.32-042stab127.2 x86_64)<br><br>  </p>
 <ul>
-<li>Documentation:  <a href="https://help.ubuntu.com/" target="_blank" rel="noopener">https://help.ubuntu.com/</a>  </li>
+<li>Documentation:  <a href="https://help.ubuntu.com/" target="_blank" rel="noopener">https://help.ubuntu.com/</a><br><br><br>The programs included with the Ubuntu system are free software;<br>the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright.<br><br><br>Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.<br><br><br>root@happylife:~#  </li>
 </ul>
-<p>The programs included with the Ubuntu system are free software;<br>the exact distribution terms for each program are described in the individual files in /usr/share/doc/*/copyright.  </p>
-<p>Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by applicable law.  </p>
-<p>root@happylife:~#  </p>
+</blockquote>
 </li>
 </ul>
 <h2 id="4-BT-软件安装"><a href="#4-BT-软件安装" class="headerlink" title="4. BT 软件安装"></a>4. BT 软件安装</h2><p>本文采用的 BT 客户端为 <code>Deluge</code> ，Deluge 提供了 Web-UI ，方便管理操作，VPS 操作系统为 Ubuntu 16.04 64bit。  </p>
