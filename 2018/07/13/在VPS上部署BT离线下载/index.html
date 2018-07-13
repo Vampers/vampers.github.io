@@ -141,7 +141,7 @@
 </code></pre>
 <p>这里 <code>--ssl</code> 指开启 ssl 访问，<code>8080</code> 是指访问端口，这时只需要访问 <code>https://VPS的IP地址:8080</code> 就可以看到 Deluge 的 web 管理界面了，Deluge 的默认密码为 <code>deluge</code> ，进入后记得及时修改密码。<br>然后连接 Deluge 服务：</p>
 <p><div align="center"><img src="https://res.cloudinary.com/ripple3710/image/upload/v1531492737/deluge_iee2hp.png" alt="image"></div><br>至此，BT 服务端基本搭建完成，别忘了给 Deluge 的上传和下载限速 20Mbps。  </p>
-<h2 id="5-Web-服务搭建"><a href="#5-Web-服务搭建" class="headerlink" title="5. Web 服务搭建"></a>5. Web 服务搭建</h2><p>BT 服务端搭建好之后便可随意下载种子了，剩下的问题就是下载到VPS的文件要怎么取回到本地。<br>最简单的方式便是在 VPS 上搭建一个 <code>http 服务器</code> ，打开网页就可以看到下载好的文件，直接点击就可以下载。这样一来，从 BT 下载到文件的取回全都是通过 Web 服务操作，非常方便。<br>本文采用 <code>Lighttpd</code> 搭建 http 服务器。  </p>
+<h2 id="5-Web-服务搭建"><a href="#5-Web-服务搭建" class="headerlink" title="5. Web 服务搭建"></a>5. Web 服务搭建</h2><p>BT 服务端搭建好之后便可随意下载种子了，剩下的问题就是下载到VPS的文件要怎么取回到本地。<br>最简单的方式便是在 VPS 上搭建一个 <code>http服务器</code> ，打开网页就可以看到下载好的文件，直接点击就可以下载。这样一来，从 BT 下载到文件的取回全都是通过 Web 服务操作，非常方便。<br>本文采用 <code>Lighttpd</code> 搭建 http 服务器。  </p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> lighttpd
 </code></pre>
 <p>接下来，需要编辑 Lighttpd 的配置文件，使它以我们想要的方式运行，本文将介绍使用 <code>https + 密码验证</code> 的配置过程。  </p>
@@ -157,13 +157,13 @@
 </code></pre>
 <p>当看到以下内容时：</p>
 <blockquote>
-<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log</p>
-</blockquote>
+<p>Saving debug log to /var/log/letsencrypt/letsencrypt.log<br>&nbsp;  </p>
 <h2 id="How-would-you-like-to-authenticate-with-the-ACME-CA"><a href="#How-would-you-like-to-authenticate-with-the-ACME-CA" class="headerlink" title="How would you like to authenticate with the ACME CA?"></a>How would you like to authenticate with the ACME CA?</h2><p>1: Spin up a temporary webserver (standalone)</p>
 <h2 id="2-Place-files-in-webroot-directory-webroot"><a href="#2-Place-files-in-webroot-directory-webroot" class="headerlink" title="2: Place files in webroot directory (webroot)"></a>2: Place files in webroot directory (webroot)</h2><p>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):<br>运行时如果遇到报错信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> /etc/init.d/apache2 stop
 <span class="token function">service</span> lighttpd stop
 </code></pre>
+</blockquote>
 </li>
 </ol>
 
