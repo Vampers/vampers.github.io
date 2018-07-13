@@ -155,16 +155,12 @@
 <li>获取 SSL 证书<pre class=" language-bash"><code class="language-bash">certbot certonly -d example.com      //将 example.com 换成你自己的域名
 </code></pre>
 当看到以下内容时，选择 <code>1</code> :<blockquote>
-<p>How would you like to authenticate with the ACME CA?<br>&nbsp;<br>1: Spin up a temporary webserver (standalone)<br>2: Place files in webroot directory (webroot)<br>&nbsp;<br>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):  </p>
+<p>How would you like to authenticate with the ACME CA?<br>&nbsp;<br>1: Spin up a temporary webserver (standalone)<br>2: Place files in webroot directory (webroot)<br>&nbsp;<br>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):<br>··<strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>*</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><br>注：运行时如果遇到错误信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
+<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> /etc/init.d/apache2 stop
+<span class="token function">service</span> lighttpd stop
+</code></pre>
 </blockquote>
 </li>
-</ol>
-<blockquote>
-<p>注：运行时如果遇到错误信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
-<pre class=" language-bash"><code class="language-bash">  <span class="token function">sudo</span> /etc/init.d/apache2 stop
-  <span class="token function">service</span> lighttpd stop
-</code></pre>
-<ol>
 <li>配置证书<br>上述步骤完成后，会在 <code>/etc/letsencrypt/live/example.com/</code> 生成证书，文件结构如下：<pre class=" language-text"><code class="language-text">/etc/letsencrypt/live/example.com/
 |-- README
 |-- cert.pem -> ../../archive/example.com/cert1.pem
@@ -179,7 +175,6 @@
 </code></pre>
 注意：每次证书更新后，需要重新合并 <code>cert.pem</code> 和 <code>privkey.pem</code> 。  </li>
 </ol>
-</blockquote>
 <h3 id="5-2-配置-Lighttpd"><a href="#5-2-配置-Lighttpd" class="headerlink" title="5.2 配置 Lighttpd"></a>5.2 配置 Lighttpd</h3><p>修改 Lighttpd 的配置文件，使其在 <code>https + 密码验证</code> 的模式下运行：</p>
 <pre class=" language-bash"><code class="language-bash">  <span class="token function">vi</span> /etc/lighttpd/lighttpd.conf
 </code></pre>
