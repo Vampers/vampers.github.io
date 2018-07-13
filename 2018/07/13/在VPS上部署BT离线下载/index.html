@@ -163,13 +163,10 @@
 
 Select the appropriate number [1-2] then [enter] (press 'c' to cancel):
 </code></pre>
-<p>选择 <code>1</code> 。  </p>
-<blockquote>
-<p>注：运行时如果遇到错误信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
+<p>选择 <code>1</code> 。<br>注：运行时如果遇到错误信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：</p>
 <pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> /etc/init.d/apache2 stop
 <span class="token function">service</span> lighttpd stop
 </code></pre>
-</blockquote>
 </li>
 <li>配置证书<br>上述步骤完成后，会在 <code>/etc/letsencrypt/live/example.com/</code> 生成证书，文件结构如下：<pre class=" language-text"><code class="language-text">/etc/letsencrypt/live/example.com/
 |-- README
