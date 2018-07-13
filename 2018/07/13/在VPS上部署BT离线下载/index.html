@@ -164,8 +164,86 @@
 <pre class=" language-bash"><code class="language-bash">  <span class="token function">sudo</span> /etc/init.d/apache2 stop
   <span class="token function">service</span> lighttpd stop
 </code></pre>
-<p>test03</p>
 </blockquote>
+<ol>
+<li>配置证书<br>上述步骤完成后，会在 <code>/etc/letsencrypt/live/example.com/</code> 生成证书，文件结构如下：<pre class=" language-text"><code class="language-text">/etc/letsencrypt/live/example.com/
+|-- README
+|-- cert.pem -> ../../archive/example.com/cert1.pem
+|-- chain.pem -> ../../archive/example.com/chain1.pem
+|-- fullchain.pem -> ../../archive/example.com/fullchain1.pem
+|-- privkey.pem -> ../../archive/example.com/privkey1.pem
+</code></pre>
+在将证书应用于 Lighttpd 时，需要将 <code>cert.pem</code> 和 <code>privkey.pem</code> 合并：<pre class=" language-bash"><code class="language-bash"><span class="token function">cat</span> /etc/letsencrypt/live/example.com/cert.pem /etc/letsencrypt/live/example.com/privkey.pem <span class="token operator">></span> /etc/letsencrypt/live/example.com/merged.pem
+</code></pre>
+</li>
+<li>证书更新<br>Let’s Encrypt SSL 证书，有效期为 90 天。因此需要在证书到期之前更新证书，以避免证书错误。可以用 Certbot 更新证书。<pre class=" language-bash"><code class="language-bash">certbot renew
+</code></pre>
+注意：每次证书更新后，需要重新合并 <code>cert.pem</code> 和 <code>privkey.pem</code> 。  <h3 id="5-2-配置-Lighttpd"><a href="#5-2-配置-Lighttpd" class="headerlink" title="5.2 配置 Lighttpd"></a>5.2 配置 Lighttpd</h3>修改 Lighttpd 的配置文件，使其在 <code>https + 密码验证</code> 的模式下运行：<pre class=" language-bash"><code class="language-bash"><span class="token function">vi</span> /etc/lighttpd/lighttpd.conf
+</code></pre>
+将配置文件修改为：<pre class=" language-nix"><code class="language-nix">server<span class="token punctuation">.</span>modules <span class="token operator">=</span> <span class="token punctuation">(</span>
+     <span class="token string">"mod_access"</span><span class="token punctuation">,</span>
+     <span class="token string">"mod_alias"</span><span class="token punctuation">,</span>
+     <span class="token string">"mod_compress"</span><span class="token punctuation">,</span>
+     <span class="token string">"mod_redirect"</span><span class="token punctuation">,</span>
+<span class="token comment" spellcheck="true">#       "mod_rewrite",</span>
+     <span class="token string">"mod_auth"</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>document<span class="token operator">-</span>root        <span class="token operator">=</span> <span class="token string">"/var/www/"</span>
+server<span class="token punctuation">.</span>upload<span class="token operator">-</span>dirs          <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token string">"/var/cache/lighttpd/uploads"</span> <span class="token punctuation">)</span>
+server<span class="token punctuation">.</span>errorlog             <span class="token operator">=</span> <span class="token string">"/var/log/lighttpd/error.log"</span>
+server<span class="token punctuation">.</span>pid<span class="token operator">-</span>file             <span class="token operator">=</span> <span class="token string">"/var/run/lighttpd.pid"</span>
+server<span class="token punctuation">.</span>username             <span class="token operator">=</span> <span class="token string">"www-data"</span>
+server<span class="token punctuation">.</span>groupname            <span class="token operator">=</span> <span class="token string">"www-data"</span>
+<span class="token comment" spellcheck="true"># server.port                 = 80</span>
+<span class="token comment" spellcheck="true"># server.bind               = "0.0.0.0"</span>
+     ssl<span class="token punctuation">.</span>engine <span class="token operator">=</span> <span class="token string">"enable"</span>
+     ssl<span class="token punctuation">.</span>pemfile <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/res.foversty.com/ssl.pem"</span>
+     ssl<span class="token punctuation">.</span>ca<span class="token operator">-</span>file <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/res.foversty.com/fullchain.pem"</span>
+     server<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"res.foversty.com"</span>
+      <span class="token punctuation">}</span>
+$SERVER<span class="token punctuation">[</span><span class="token string">"socket"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"[::]:443"</span> <span class="token punctuation">{</span>
+     ssl<span class="token punctuation">.</span>engine <span class="token operator">=</span> <span class="token string">"enable"</span>
+     ssl<span class="token punctuation">.</span>pemfile <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/res.foversty.com/ssl.pem"</span>
+     ssl<span class="token punctuation">.</span>ca<span class="token operator">-</span>file <span class="token operator">=</span> <span class="token string">"/etc/letsencrypt/live/res.foversty.com/fullchain.pem"</span>
+     server<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"res.foversty.com"</span>
+      <span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true"># http自动跳转到https</span>
+$SERVER<span class="token punctuation">[</span><span class="token string">"socket"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">":80"</span> <span class="token punctuation">{</span>
+$HTTP<span class="token punctuation">[</span><span class="token string">"host"</span><span class="token punctuation">]</span> <span class="token operator">=</span>~ <span class="token string">".*"</span> <span class="token punctuation">{</span>
+ url<span class="token punctuation">.</span>redirect <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">".*"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"https://%0$0"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+$SERVER<span class="token punctuation">[</span><span class="token string">"socket"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"[::]:80"</span> <span class="token punctuation">{</span>
+$HTTP<span class="token punctuation">[</span><span class="token string">"host"</span><span class="token punctuation">]</span> <span class="token operator">=</span>~ <span class="token string">".*"</span> <span class="token punctuation">{</span>
+ url<span class="token punctuation">.</span>redirect <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token string">".*"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"https://%0$0"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+index<span class="token operator">-</span>file<span class="token punctuation">.</span>names            <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token string">"index.php"</span><span class="token punctuation">,</span> <span class="token string">"index.html"</span><span class="token punctuation">,</span> <span class="token string">"index.lighttpd.html"</span> <span class="token punctuation">)</span>
+url<span class="token punctuation">.</span>access<span class="token operator">-</span>deny             <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token string">"~"</span><span class="token punctuation">,</span> <span class="token string">".inc"</span> <span class="token punctuation">)</span>
+static<span class="token operator">-</span>file<span class="token punctuation">.</span>exclude<span class="token operator">-</span>extensions <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token string">".php"</span><span class="token punctuation">,</span> <span class="token string">".pl"</span><span class="token punctuation">,</span> <span class="token string">".fcgi"</span> <span class="token punctuation">)</span>
+compress<span class="token punctuation">.</span>cache<span class="token operator">-</span>dir          <span class="token operator">=</span> <span class="token string">"/var/cache/lighttpd/compress/"</span>
+compress<span class="token punctuation">.</span>filetype           <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token string">"application/javascript"</span><span class="token punctuation">,</span> <span class="token string">"text/css"</span><span class="token punctuation">,</span> <span class="token string">"text/html"</span><span class="token punctuation">,</span> <span class="token string">"text/plain"</span> <span class="token punctuation">)</span>
+<span class="token comment" spellcheck="true"># default listening port for IPv6 falls back to the IPv4 port</span>
+<span class="token comment" spellcheck="true">## Use ipv6 if available</span>
+<span class="token comment" spellcheck="true">#include_shell "/usr/share/lighttpd/use-ipv6.pl " + server.port</span>
+include_shell <span class="token string">"/usr/share/lighttpd/create-mime.assign.pl"</span>
+include_shell <span class="token string">"/usr/share/lighttpd/include-conf-enabled.pl"</span>
+dir<span class="token operator">-</span>listing<span class="token punctuation">.</span>encoding       <span class="token operator">=</span> <span class="token string">"utf8"</span>
+<span class="token comment" spellcheck="true"># 开启密码认证，同时在最前面的server.modules中加入mod_auth</span>
+<span class="token comment" spellcheck="true"># 如果不需要密码认证，把下面的代码删除即可</span>
+auth<span class="token punctuation">.</span>debug <span class="token operator">=</span> <span class="token number">0</span>
+auth<span class="token punctuation">.</span>backend <span class="token operator">=</span> <span class="token string">"plain"</span>
+auth<span class="token punctuation">.</span>backend<span class="token punctuation">.</span>plain<span class="token punctuation">.</span>userfile <span class="token operator">=</span> <span class="token string">"/etc/lighttpd/auth"</span>
+auth<span class="token punctuation">.</span>require <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token string">"/"</span> <span class="token operator">=</span><span class="token operator">></span>
+<span class="token punctuation">(</span>
+<span class="token string">"method"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"basic"</span><span class="token punctuation">,</span>
+<span class="token string">"realm"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"Password protected area"</span><span class="token punctuation">,</span>
+<span class="token string">"require"</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token string">"user=mabodofu"</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</code></pre>
+</li>
+</ol>
 
             </div>
 
