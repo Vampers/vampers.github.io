@@ -154,8 +154,8 @@
 </li>
 <li>获取 SSL 证书<pre class=" language-bash"><code class="language-bash">certbot certonly -d example.com      //将 example.com 换成你自己的域名
 </code></pre>
-当看到以下内容时：<blockquote>
-<p>How would you like to authenticate with the ACME CA?<br>&nbsp;<br>1: Spin up a temporary webserver (standalone)<br>2: Place files in webroot directory (webroot)<br>&nbsp;<br>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):<br>&nbsp;<br>选择 <code>1</code> 。</p>
+当看到以下内容时，选择 <code>1</code> :<blockquote>
+<p>How would you like to authenticate with the ACME CA?<br>&nbsp;<br>1: Spin up a temporary webserver (standalone)<br>2: Place files in webroot directory (webroot)<br>&nbsp;<br>Select the appropriate number [1-2] then [enter] (press ‘c’ to cancel):  </p>
 </blockquote>
 </li>
 </ol>
@@ -163,7 +163,7 @@
 <li>运行时如果遇到报错信息 <code>Problem binding to port 80: Could not bind to IPv4 or IPv6.</code> ，执行以下命令：<pre class=" language-bash"><code class="language-bash"><span class="token function">sudo</span> /etc/init.d/apache2 stop
 <span class="token function">service</span> lighttpd stop
 </code></pre>
-test02</li>
+test03</li>
 </ul>
 
             </div>
