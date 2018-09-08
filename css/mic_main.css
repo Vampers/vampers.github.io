@@ -1,8 +1,8 @@
 @import url(font-awesome.min.css);
-@import url('https://fonts.gmirror.org/css?family=Noto+Sans:400,400i,700,700i|Noto+Serif:400,400i,700,700i&subset=latin-ext');
-@import url("https://fonts.gmirror.org/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
+@import url('https://fonts.proxy.ustclug.org/css?family=Noto+Sans:400,400i,700,700i|Noto+Serif:400,400i,700,700i&subset=latin-ext');
+@import url("https://fonts.proxy.ustclug.org/css?family=Merriweather:300,700,300italic,700italic|Source+Sans+Pro:900");
 @import url(notosanssc.css);
-@import url("https://fonts.gmirror.org/earlyaccess/notosansscsliced.css");
+@import url("https://fonts.proxy.ustclug.org/earlyaccess/notosansscsliced.css");
 
 /* Reset */
 
