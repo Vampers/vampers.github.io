@@ -368,7 +368,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 div.aplayer {
-  width: 50%;
+  width: 530px;
 }
 
 .aplayer-title, .aplayer-author {
@@ -391,5 +391,5 @@ div.aplayer {
 }
 
 button {
-  outline: none;
+  display: block;
 }
