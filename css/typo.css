@@ -378,10 +378,12 @@ div.aplayer {
 
 .aplayer-title, .aplayer-author {
   text-shadow: 0.012em 0.012em 0.012em #999999;
+  font-family: 'Noto Sans', '1PingFangSC', 'Noto Sans SC Sliced', 'Noto Sans SC', 'Lantinghei SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
 }
 
 .aplayer-lrc p {
   text-align: center;
+  font-family: 'Noto Sans', '1PingFangSC', 'Noto Sans SC Sliced', 'Noto Sans SC', 'Lantinghei SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
 }
 
 button[type="button"] {
