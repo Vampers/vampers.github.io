@@ -370,3 +370,7 @@ h1, h2, h3, h4, h5, h6 {
 div.aplayer {
   width: 60%;
 }
+
+.aplayer-title, .aplayer-author {
+  text-align: left;
+}
