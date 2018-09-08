@@ -966,6 +966,6 @@ div.aplayer {
   text-align: center;
 }
 
-input[type="button"] .aplayer-icon {
+button[type="button"] {
   box-shadow: none;
 }
