@@ -372,5 +372,9 @@ div.aplayer {
 }
 
 .aplayer-title, .aplayer-author {
-  text-align: left;
+  text-align: justify;
+}
+
+.aplayer-lrc p {
+  text-align: center;
 }
