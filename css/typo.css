@@ -367,6 +367,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Noto Sans', '1PingFang SC', 'Noto Sans SC Sliced', 'Noto Sans SC', 'Lantinghei SC', 'Microsoft Yahei', 'Hiragino Sans GB', 'Microsoft Sans Serif', 'WenQuanYi Micro Hei', sans-serif;
 }
 
-.aplayer-lrc {
+.aplayer-lrc p {
   text-align: center !important;
 }
