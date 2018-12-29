@@ -389,3 +389,7 @@ div.aplayer {
 button[type="button"] {
   box-shadow: none;
 }
+
+.typo ul li ul li {
+  list-style: circle;
+}
