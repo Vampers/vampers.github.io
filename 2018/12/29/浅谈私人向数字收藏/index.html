@@ -100,7 +100,7 @@
             <div class="typo" style="padding: 3rem;">
                 <!-- 音乐播放器  -->
 
-    <div id="aplayer-WdFvmcbU" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2578637231" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#FF4081" data-loop="all" data-order="random"></div>
+    <div id="aplayer-wISlYexR" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2578637231" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#FF4081" data-loop="all" data-order="random"></div>
 <p><br>  </p>
 <p>历史版本：2018.12.26 - 29 ········ 初版</p>
 <h2 id="0-写在前面"><a href="#0-写在前面" class="headerlink" title="0. 写在前面"></a>0. 写在前面</h2><blockquote>
@@ -280,7 +280,7 @@
 <li>PCM 主要经过3个过程：抽样、量化和编码。抽样过程将连续时间模拟信号变为离散时间、连续幅度的抽样信号，量化过程将抽样信号变为离散时间、离散幅度的数字信号，编码过程将量化后的信号编码成为一个二进制码组输出。对于 PCM，关键性的参数就是我们平时常说的采样率和采样位数，前者决定抽样精度，后者决定量化精度。  </li>
 <li>PDM 是一种使用二进制数 0，1 表示模拟信号的调制方式，其采样位数为 1 bit。而模拟信号的幅值则使用输出脉冲对应区域的密度表示，在实际输出的一位数据流中，只存在 “1” 和 “0”，1 的密度越大，代表该区域对应的模拟信号幅值越大，反之，0 的密度越大，代表该区域的模拟信号幅值越小。PDM 实现模拟信号和数字信号互相转化的原理是 <a href="https://en.wikipedia.org/wiki/Delta-sigma_modulation" target="_blank" rel="noopener">ΔΣ调制</a>。  </li>
 </ul>
-<p>常见的音频格式中，采用 PCM 的较为多见，如常见的 MP3/AAC/FLAC/APE/LPCM 等格式；而采用 PDM 的，基本上只有 DSD (Direct Stream Digital)。在生产环境中，PCM 的音频可以直接进行各种后期处理工作 (如混音等)，而 PDM 的音频则不能，一般需要先转成 PCM 再行处理。不过，如果是对于终端消费者而言，由于只涉及播放 (解码)，故并无优劣之分。  </p>
+<p>常见的音频格式中，采用 PCM 的较为多见，如 MP3/AAC/FLAC/APE/LPCM 等格式；而采用 PDM 的，基本上只有 DSD (Direct Stream Digital)。在生产环境中，PCM 的音频可以直接进行各种后期处理工作 (如混音等)，而 PDM 的音频则不能，一般需要先转成 PCM 再行处理。不过，如果是对于终端消费者而言，由于只涉及播放 (解码)，故并无优劣之分。  </p>
 </li>
 <li><p>有损和无损<br>通常来说，我们所说的有损和无损是相对于商业发行的 CD 而言。品质等同于 CD 级的称为无损音乐，而由无损音乐采用有损压缩编码(如 MP3/AAC 等)产生的音频文件称为有损音乐。有损与无损的区别在于所含信息量的多少，与规格无关，因此并不是所有 CD 规格 (16 bit，44.1 kHz) 的音频文件都可以称为无损音乐。  </p>
 </li>
@@ -367,7 +367,7 @@ Tagged date                              : UTC 2018-11-03 23:50:41
 <p>另外，需要指出的一个问题是，听感对于收藏有什么影响。有读者可能会说人耳最多也就只能听到 20 kHz 的声音，CD 的采样率已经足够了，那么还有必要去收藏高采样率的 Hi-Res 吗？<br>先说答案，有。具体解释可以参考 <a href="https://www.zhihu.com/question/62177905/answer/265988722" target="_blank" rel="noopener">这篇回答</a>。<br>多说一点，笔者认为实际听感和收藏本身没有关联，收藏只需要关注信息量，是完全理性的，而听感则由于主观性因人而异。但是读者可能想反驳说所谓收藏数字音乐，最后还是要落到听上，耳朵收货。的确如此，收藏的目的一是为了保存和记录，二是为了享受，至于怎么考虑这两者的关系，就请读者自行斟酌了。  </p>
 <h3 id="3-4-Bit-Perfect-Playback"><a href="#3-4-Bit-Perfect-Playback" class="headerlink" title="3.4 Bit Perfect Playback"></a>3.4 Bit Perfect Playback</h3><p>与视频播放不同的是，由于人耳的局限，播放方式的不同对于实际听感的影响可能并不是那么明显。此外，视频播放具有硬件上的通用性，而对于音频来说，比起折腾怎么来正确播放音乐 (在软件上下功夫)，远不如采用更高级和专业的硬件设备所获得的提升大 (比如优秀的 DAC，高质量的功放以及高素质的耳机或音响等)。  </p>
 <p>直白地说，要听到更高品质的音乐，直接投入资金换来的回报较大 (嗯，就是加钱)。  </p>
-<p>不过，在这里探讨下软件层面的东西依然是有意义的。<br>音频播放的理想形式是 Bit Perfect Playback，这是说在音频流送达 DAC 进行数模转换之前没有发生任何改变，其中显著的特征就是采样率和采样位数。在现代数字音频系统中，尤其在那些不是专为音频播放而设计的系统中 (如电脑，手机等)，SRC (Sample-rate conversion，采样率转换) 是经常出现的事，这是因为在这些系统中常常需要在同一时间对多个音频流进行混合，而要实现这个要求就必须让所有要混合的音频流使用同样的采样率。而音频流经过 SRC 之后，其品质会劣化，尤其是对于非整数倍的 SRC (如 44.1 kHz -&gt; 48 kHz)，劣化明显。<br>所以，简单地说，在这些系统上实现 Bit Perfect Playck 的核心问题在于如何避免或者说绕过 SRC。<br>说实话，并没有非常完美的解决方案，有所得就有所失。而且音频播放受硬件条件的制约实在太大了，对于一般用户实在是没有折腾的必要 (笔者还是折腾过的)，还是那句话，请使用更好的硬件。<br>不过对于 Windows 用户笔者有一句忠告，播放音乐时选择 WASAPI (Windows Audio Session API，Windows 音频会话 API) 而不要使用 Direct Sound。很多播放软件中都有这个设置项，这样做之后至少会好上那么一些。  </p>
+<p>不过，在这里探讨下软件层面的东西依然是有意义的。<br>音频播放的理想形式是 Bit Perfect Playback，这是说在音频流送达 DAC 进行数模转换之前没有发生任何改变，其中显著的特征就是采样率和采样位数。在现代数字音频系统中，尤其在那些不是专为音频播放而设计的系统中 (如电脑，手机等)，SRC (Sample-rate conversion，采样率转换) 是经常出现的事，这是因为在这些系统中常常需要在同一时间对多个音频流进行混合，而要实现这个要求就必须让所有要混合的音频流使用同样的采样率。而音频流经过 SRC 之后，其品质会劣化，尤其是对于非整数倍的 SRC (如 44.1 kHz -&gt; 48 kHz)，劣化明显。<br>所以，简单地说，在这些系统上实现 Bit Perfect Playback 的核心问题在于如何避免或者说绕过 SRC。<br>说实话，并没有非常完美的解决方案，有所得就有所失。而且音频播放受硬件条件的制约实在太大了，对于一般用户实在是没有折腾的必要 (笔者还是折腾过的)，还是那句话，请使用更好的硬件。<br>不过对于 Windows 用户笔者有一句忠告，播放音乐时选择 WASAPI (Windows Audio Session API，Windows 音频会话 API) 而不要使用 Direct Sound。很多播放软件中都有这个设置项，这样做之后至少会好上那么一些。  </p>
 <p>另外，对于 DSD，由于其编码的特性，特别适合采用硬件解码，而与此对应的软件解码却会带来一定的损失。具体来说，DSD 的播放有三种形式：<strong>Native</strong> (源码输出，硬件解码，品质最佳)；<strong>DoP</strong> (DSD over PCM，把 DSD 的音频资料放进 PCM 的架构中，以 PCM 的方式传输，在接收端再抽取成为 DSD 形式，然后进行硬件解码，理论上讲没有品质损失)；<strong>PCM</strong> (将 DSD 转为 PCM 之后进行解码，品质有损失)。  </p>
 <h3 id="3-5-音频资料有序性"><a href="#3-5-音频资料有序性" class="headerlink" title="3.5 音频资料有序性"></a>3.5 音频资料有序性</h3><p>音频资料的相关信息都写在 Meta 信息中，换句话说，与文件名没有关系，因此对音频文件重命名意义不大。而保持音频资料的有序性，重点就在于保证 Meta 信息的完整性和正确性。  </p>
 <p>目前，Meta 信息最为完整的，是 iTunes 商店的 iTunes Plus 音频，因此可以此作为标准。但实际上，要获得像 iTunes Plus 音频这样完善的音频信息需要花费不少的精力，因此很多时候只能降低一些标准，保持基本信息的完整就可以了。  </p>
