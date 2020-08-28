@@ -256,7 +256,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1.2em;
   margin-bottom: 0.6em;
   line-height: 1.35;
-  text-shadow: 0.012em 0.012em 0.012em #999999;
+  /*text-shadow: 0.012em 0.012em 0.012em #999999;*/
 }
 
 .typo h1, .typo-h1 {
