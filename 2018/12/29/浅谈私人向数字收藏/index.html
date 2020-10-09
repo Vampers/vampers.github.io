@@ -100,7 +100,7 @@
             <div class="typo" style="padding: 3rem;">
                 <!-- 音乐播放器  -->
 
-    <div id="aplayer-ZewgunrZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2578637231" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#FF4081" data-loop="all" data-order="random"></div>
+    <div id="aplayer-vSHUpOlB" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="2578637231" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="true" data-mutex="false" data-listmaxheight="340px" data-preload="auto" data-theme="#FF4081" data-loop="all" data-order="random"></div>
 <p><br>  </p>
 <p>历史版本：2018.12.26 - 29 ········ 初版</p>
 <h2 id="0-写在前面"><a href="#0-写在前面" class="headerlink" title="0. 写在前面"></a>0. 写在前面</h2><blockquote>
@@ -202,7 +202,7 @@
 <p>而之所以说这两者才是天作之合，是因为 LAV 是很强大的解码器，并且解码过程采用的是高精度以保证质量，然而并不是所有渲染器都能直接接受 LAV 输出的高精度数据，且 LAV 并非必须和 madVR 捆绑使用，因此 LAV 在设计上提供了很多种输出格式，方便和一些低端的渲染器搭配也能工作：<br><div align="center"><img src="https://res.cloudinary.com/ripple3710/image/upload/v1545997016/78454-1-c_n4damv.png" alt="image"></div><br>关注上图中红框标记的 “Output Formats” 部分，可以看到基本都打上了 ☑，这是因为当前是和 madVR 搭配使用的，而 madVR 能够完美接受 LAV 解码出的内容，这些勾选的格式都能通吃，所以才这样做。但是如果搭配其他渲染器，比如 Windows 免费送的 EVR (Enhanced Video Render)，那么就要去掉不少的 ☑，一般只勾选 “RGB24”。  </p>
 </li>
 </ul>
-<p>接下来，就是要让 LAV 和 madVR 参与到视频播放中去。这两者都是作为外置 DirectShow 滤镜存在的，因此从理论上来说任何一个支持自定义选择外置 DirectShow 滤镜的播放器都可以调用 LAV 和 madVR 进行视频播放。而现实当然不会这么美好，目前常用的播放器一般是 PotPlayer 或 MPC-HC(/BE)，这两个播放器可以让 LAV 和 madVR 完美协作 (其中 MPC-HC 预置的解码器就是 LAV)，此外还具有非常强大的其他功能。<br>这里不得不提的是，madVR 作为高质量的视频渲染器，对系统性能的需求尤其是硬件性能要求较高，虽然其下限较低，但是上限却高的惊人，说得夸张点堪称显卡杀手，不过获得的也是媲美顶级蓝光机的极致画面。madVR 内置多种可供选择的算法来对视频进行处理，不同算法各有特点，对硬件资源的消耗也各不相同。通常而言，要求越高的画面质量对硬件资源的消耗也越高，即使一些顶级显卡在面对 madVR 的个别算法在个别场景下也会显得有些吃力。但也不必觉得 madVR 是高端机器才配使用的东西，笔者只是想说读者需要量力而行，实际上只要设置得当，madVR 在一般硬件条件下也能呈现相当不错的画面，至少比前述 “a piece of shit” 强不少。说得风趣一些，用 madVR 看视频和玩一些大型游戏其实差不多。  </p>
+<p>接下来，就是要让 LAV 和 madVR 参与到视频播放中去。这两者都是作为外置 DirectShow 滤镜存在的，因此从理论上来说任何一个支持自定义选择外置 DirectShow 滤镜的播放器都可以调用 LAV 和 madVR 进行视频播放。而现实当然不会这么美好，目前常用的播放器一般是 <a href="https://potplayer.daum.net/" target="_blank" rel="noopener">PotPlayer</a> 或 <a href="https://sourceforge.net/projects/mpcbe/" target="_blank" rel="noopener">MPC-BE</a>，这两个播放器可以让 LAV 和 madVR 完美协作，此外还具有非常强大的其他功能。<br>这里不得不提的是，madVR 作为高质量的视频渲染器，对系统性能的需求尤其是硬件性能要求较高，虽然其下限较低，但是上限却高的惊人，说得夸张点堪称显卡杀手，不过获得的也是媲美顶级蓝光机的极致画面。madVR 内置多种可供选择的算法来对视频进行处理，不同算法各有特点，对硬件资源的消耗也各不相同。通常而言，要求越高的画面质量对硬件资源的消耗也越高，即使一些顶级显卡在面对 madVR 的个别算法在个别场景下也会显得有些吃力。但也不必觉得 madVR 是高端机器才配使用的东西，笔者只是想说读者需要量力而行，实际上只要设置得当，madVR 在一般硬件条件下也能呈现相当不错的画面，至少比前述 “a piece of shit” 强不少。说得风趣一些，用 madVR 看视频和玩一些大型游戏其实差不多。  </p>
 <p>以上只是简单介绍了 LAV 和 madVR，在实际使用过程中，这两者都需要进行一定程度的配置才能达到最佳工作状态，尤其是 madVR 不同配置方案下最终效果可能相差悬殊。而关于这两者的配置，需要另外的较长的篇幅，本文不再展开，但是这里提供两篇来自“万年冷冻库”的内容详实且易于理解的教程文章给读者供进一步了解 (有可能需要 K [科] X [学] S [上] W [网])：  </p>
 <p>&emsp;&emsp;  ▪ <a href="http://lysandria1985.blogspot.com/2013/01/2-lav-filters.html" target="_blank" rel="noopener">系列之2─強大的外掛解碼方案-LAV Filters</a><br>&emsp;&emsp;  ▪ <a href="http://lysandria1985.blogspot.com/2013/01/3-madvr.html" target="_blank" rel="noopener">系列之3─最強渲染器-madVR</a>  </p>
 <p>总之，视频播放远不像一些人想象的那么简单。事实上，肯定有人拿着顶配电脑依然看着 QQ 影音之流播放出的辣眼睛的画面，这也并不是什么丢人的事。只是笔者希望读者在看完这一章节后能够有意识的对自己的眼睛更好一些或者说至少知道怎么样可以取得更好的观影体验。  </p>
